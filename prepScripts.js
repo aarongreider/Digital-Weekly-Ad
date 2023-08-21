@@ -1,7 +1,8 @@
 let isReordering = false;
+
 let page = document.querySelector(`.page`);
 const pageDims = {
-    height: page.offsetHeight, 
+    height: page.offsetHeight,
     width: page.offsetWidth
 }
 
@@ -9,10 +10,10 @@ convertPercent();
 removeIDs();
 
 function HtmlFrag() {
-    
+
     this.stylesheet = `
         <link href="indesignTest-14-web-resources/css/viewstyles_layout.css" rel="stylesheet" type="text/css" />
-	    <link href="indesignTest-14-web-resources/css/viewstyles_card.css" rel="stylesheet" type="text/css" />`;
+	    <link href="indesignTest-14-web-resources/css/viewstyles_banners.css" rel="stylesheet" type="text/css" />`;
 
     this.script = `<script src="adData.js"></script>`;
 
@@ -30,7 +31,7 @@ function HtmlFrag() {
            <head>
                <meta charset="UTF-8">
                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-               <title>Document</title>
+               <title>Weekly Ad ${now(true)}</title>
                ${this.stylesheet}
            </head>
            <body>
@@ -40,32 +41,37 @@ function HtmlFrag() {
            </html>`;
 }
 
-function removeIDs() {
-    let items = document.getElementsByClassName("item");
-    let pages = document.getElementsByClassName("page");
-
-    Array.from(items).forEach(item => {
-        item.removeAttribute('id')
-    });
-
-    // get all .page and assign id page1, page2, page3...
-    for (let i = 0; i < pages.length; i++) {
-        pages[i].setAttribute('id', `page${i+1}`)
-    }
-
-    console.log("removed id's")
-}
-
 function save(htmlContent) {
     const blob = new Blob([htmlContent], { type: "text/html" });
     var a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = "savetest.html";
+    a.download = `ad_${now()}.html`;
     a.hidden = true;
     document.body.appendChild(a);
     a.click();
 
     console.log(`saving html file as ${a.download}`)
+}
+
+function removeIDs() {
+    let items = document.getElementsByClassName("item");
+    let pages = document.getElementsByClassName("page");
+    let img = document.querySelector('.page > div > img')
+
+    Array.from(items).forEach(item => {
+        item.removeAttribute('id')
+    });
+
+    img.parentNode.removeAttribute('id');
+    img.parentNode.removeAttribute('class');
+    img.removeAttribute('class');
+
+    // get all .page and assign id page1, page2, page3...
+    for (let i = 0; i < pages.length; i++) {
+        pages[i].setAttribute('id', `page${i + 1}`)
+    }
+
+    console.log("removed id's")
 }
 
 function convertPercent() {
@@ -131,4 +137,20 @@ function confirmReorder() {
     } else {
         console.log("nothing to reorder!")
     }
+}
+
+function now(truncated = false) {
+    var currentDate = new Date();
+
+    var year = currentDate.getFullYear();
+    var month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+    var day = currentDate.getDate().toString().padStart(2, '0');
+    var hours = currentDate.getHours().toString().padStart(2, '0');
+    var minutes = currentDate.getMinutes().toString().padStart(2, '0');
+    var seconds = currentDate.getSeconds().toString().padStart(2, '0');
+
+    var formattedDate = `${year}-${month}-${day}` + `${!truncated ? ` ${hours}${minutes}-${seconds}`:``}`;
+
+    console.log("getting now(): " + formattedDate);
+    return formattedDate;
 }
