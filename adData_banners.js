@@ -1,3 +1,5 @@
+localStorage.clear()
+
 fetch('https://script.google.com/macros/s/AKfycbyKAzmaxBAnyrpyW9QTW_XKIWQdWPrjtpP92ANEMPKJd2Zbdpg15yaf7x49XJ-APUKXkA/exec')
     .then(response => {
         if (!response.ok) {
@@ -10,7 +12,8 @@ fetch('https://script.google.com/macros/s/AKfycbyKAzmaxBAnyrpyW9QTW_XKIWQdWPrjtp
         console.log(response);
         jsonToBanners(response)
         jsonToOverlays(response);
-        setListeners();
+        setOverlayListeners();
+        setShoppingListListeners(response);
     })
     .catch(error => {
         // Handle errors here
@@ -40,6 +43,41 @@ function jsonToOverlays(response) {
         let overlay = getOverlayFrag(itemData["Product Description"], itemData["Cost"], itemData["Save"], itemData["Image"])
         container.append(overlay.content);
     }
+}
+
+// add event listen to .info to toggle overlays
+function setOverlayListeners() {
+    //set listeners on info buttons to open overlay
+    let infoButtons = Array.from(document.getElementsByClassName('info'));
+    infoButtons.forEach(function (button, i) {
+        button.addEventListener('click', () => {
+            console.log('info click')
+            displayOverlay(i);
+        });
+    });
+
+    //set listener to close overlays, (toggle off all objects with .overlayActive)
+    document.getElementById('overlayContainer').addEventListener('click', () => {
+        console.log('overlaycontainer click')
+        Array.from(document.getElementsByClassName('overlayActive')).forEach(function (overlay) {
+            overlay.classList.toggle('overlayActive');
+        });
+    })
+}
+
+function setShoppingListListeners(response) {
+    // add a click listener to every add to list button
+    // the item's data is stored within the scope of the listener. 
+    Array.from(document.getElementsByClassName('add')).forEach(function (button, i) {
+        button.addEventListener('click', () => {
+            console.log('add to list click')
+            localStorage.setItem(response.data[i]["Block #"], response.data[i])
+            console.log((response.data[i]))
+            console.log(localStorage.getItem(response.data[i]["Block #"]))
+            console.log(localStorage.getItem(2))
+            refreshShoppingList();
+        });
+    });
 }
 
 function getBannerFrag(title, price, save, img) {
@@ -87,23 +125,6 @@ function getOverlayFrag(title, price, save, img) {
     return overlay;
 }
 
-// add event listen to .info to toggle overlays
-function setListeners() {
-    Array.from(document.getElementsByClassName('info')).forEach(function (button, i) {
-        button.addEventListener('click', () => {
-            console.log('info click')
-            displayOverlay(i);
-        });
-    });
-
-    document.getElementById('overlayContainer').addEventListener('click', () => {
-        console.log('overlaycontainer click')
-        Array.from(document.getElementsByClassName('overlayActive')).forEach(function (overlay) {
-            overlay.classList.toggle('overlayActive');
-        });
-    })
-}
-
 function displayOverlay(index) {
     let overlays = document.getElementsByClassName('overlay');
     let container = document.getElementById('overlayContainer');
@@ -111,4 +132,13 @@ function displayOverlay(index) {
     container.classList.toggle('overlayActive');
 }
 
+function refreshShoppingList() {
+    // scrap the current shopping list
+    // iterate over localStorage and reconstruct the shopping list widget
 
+    // OR store a object containing the data for the shopping list in a single localstorage entry under the key "shopping list"
+    console.log('refreshing shopping list')
+    for(let i = 0; i < localStorage.length; i++) {
+        localStorage.getItem(i)
+    }
+}
