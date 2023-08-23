@@ -12,8 +12,8 @@ fetch('https://script.google.com/macros/s/AKfycbyKAzmaxBAnyrpyW9QTW_XKIWQdWPrjtp
         jsonToBanners(response)
         jsonToOverlays(response);
         setOverlayListeners();
-        refreshShoppingList(listKey)
         setShoppingListListeners(response);
+        refreshShoppingList(listKey)
         setPrintListener();
     })
     .catch(error => {
@@ -46,7 +46,7 @@ function jsonToOverlays(response) {
     }
 }
 
-function refreshShoppingList(key) {
+function refreshShoppingList(key = 'shopping list') {
     // scrap the current shopping list
     // iterate over localStorage object and reconstruct the shopping list widget
     
