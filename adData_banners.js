@@ -1,5 +1,4 @@
-localStorage.clear()
-
+let listKey = 'shopping list';
 fetch('https://script.google.com/macros/s/AKfycbyKAzmaxBAnyrpyW9QTW_XKIWQdWPrjtpP92ANEMPKJd2Zbdpg15yaf7x49XJ-APUKXkA/exec')
     .then(response => {
         if (!response.ok) {
@@ -13,7 +12,9 @@ fetch('https://script.google.com/macros/s/AKfycbyKAzmaxBAnyrpyW9QTW_XKIWQdWPrjtp
         jsonToBanners(response)
         jsonToOverlays(response);
         setOverlayListeners();
+        refreshShoppingList(listKey)
         setShoppingListListeners(response);
+        setPrintListener();
     })
     .catch(error => {
         // Handle errors here
@@ -45,6 +46,22 @@ function jsonToOverlays(response) {
     }
 }
 
+function refreshShoppingList(key) {
+    // scrap the current shopping list
+    // iterate over localStorage object and reconstruct the shopping list widget
+    
+    console.log('refreshing shopping list')
+
+    let container = document.getElementById('listCardContainer');
+    container.innerHTML = '';
+    let list = JSON.parse(localStorage.getItem(key));
+    list.forEach(itemData => {
+        let card = getListCardFrag(itemData["Product Description"], itemData["Cost"], itemData["Save"], itemData["Image"])
+        container.append(card.content);
+    });
+    
+}
+
 // add event listen to .info to toggle overlays
 function setOverlayListeners() {
     //set listeners on info buttons to open overlay
@@ -66,16 +83,30 @@ function setOverlayListeners() {
 }
 
 function setShoppingListListeners(response) {
+    /* LIST VIEW TOGGLE */
+    document.querySelector(`.listDropdown > .header`).addEventListener('click', () => {
+        console.log('toggle shopping list')
+        document.querySelector(`#listCardContainer`).classList.toggle('showCards')
+    })
+
+    /* LOCALSTORAGE */
     // add a click listener to every add to list button
     // the item's data is stored within the scope of the listener. 
+    //localStorage.clear();
+    if (localStorage.getItem(listKey) === null) {
+        localStorage.setItem(listKey, '[]');
+    }
+   
     Array.from(document.getElementsByClassName('add')).forEach(function (button, i) {
         button.addEventListener('click', () => {
             console.log('add to list click')
-            localStorage.setItem(response.data[i]["Block #"], response.data[i])
-            console.log((response.data[i]))
-            console.log(localStorage.getItem(response.data[i]["Block #"]))
-            console.log(localStorage.getItem(2))
-            refreshShoppingList();
+
+            let list = JSON.parse(localStorage.getItem(listKey))
+            list.push(response.data[i])
+            localStorage.setItem(listKey, JSON.stringify(list));
+            
+            console.log(JSON.parse(localStorage.getItem(listKey)))
+            refreshShoppingList(listKey);
         });
     });
 }
@@ -125,6 +156,22 @@ function getOverlayFrag(title, price, save, img) {
     return overlay;
 }
 
+function getListCardFrag(title, price, save, img) {
+    const listCard = document.createElement('template');
+    let fragment = `
+            <div><div class="listCard">
+				<img src="${img}">
+				<div class="cardTextContainer">
+					<h2>${title}</h2>
+					<p>${price}</p>
+					<p>Save ${save}</p>
+				</div>
+			<div></div>`;
+
+    listCard.innerHTML = fragment;
+    return listCard;
+}
+
 function displayOverlay(index) {
     let overlays = document.getElementsByClassName('overlay');
     let container = document.getElementById('overlayContainer');
@@ -132,13 +179,9 @@ function displayOverlay(index) {
     container.classList.toggle('overlayActive');
 }
 
-function refreshShoppingList() {
-    // scrap the current shopping list
-    // iterate over localStorage and reconstruct the shopping list widget
 
-    // OR store a object containing the data for the shopping list in a single localstorage entry under the key "shopping list"
-    console.log('refreshing shopping list')
-    for(let i = 0; i < localStorage.length; i++) {
-        localStorage.getItem(i)
-    }
+function setPrintListener() {
+    document.getElementById("print").addEventListener('click', () => {
+        window.print();
+    })
 }
