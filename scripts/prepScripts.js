@@ -179,7 +179,7 @@ function now(truncated = false) {
     var minutes = currentDate.getMinutes().toString().padStart(2, '0');
     var seconds = currentDate.getSeconds().toString().padStart(2, '0');
 
-    var formattedDate = `${year}-${month}-${day}` + `${!truncated ? ` ${hours}${minutes}-${seconds}` : ``}`;
+    var formattedDate = `${year}-${month}-${day}` + `${!truncated ? `-${hours}${minutes}-${seconds}` : ``}`;
 
     console.log("getting now(): " + formattedDate);
     return formattedDate;
