@@ -16,7 +16,7 @@
 .page {
 	position: relative;
 	/* width: 288px; */
-	width: 90vw;
+	width: 100%;
 	max-width: 1000px;
 	/* height: calc(40vw / 2.1284722222222) */
 	aspect-ratio: 288 / 613;
@@ -35,3 +35,10 @@ img {
 	background: rgb(110, 110, 110) !important;
 }
 
+#controlButtons {
+	position: fixed;
+	top:5vh;
+	left: 5vw;
+	background-color: rgba(0, 0, 0, 0.288);
+	padding: 10px;
+}

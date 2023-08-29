@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iFrame test</title>
+</head>
+
+<body>
+    <button style="position: fixed;">Switch Ad Layout!</button>
+    <iframe class="inactive" src="displayAdCards.html" frameborder="0">
+    </iframe>
+    <iframe src="ad_2023-08-29 1206-01.html" frameborder="0">
+    </iframe>
+    <style>
+        iframe {
+            width: 50%;
+            resize: both;
+            overflow: auto;
+            aspect-ratio: 288 / 613;
+        }
+
+        .inactive {
+            display: none;
+        }
+    </style>
+    <script>
+        let cardViewActive = true;
+        let iframes = Array.from(document.getElementsByTagName('iframe'));
+        let button = document.getElementsByTagName('button')[0];
+        button.addEventListener('click', () => {
+            //cardViewActive ? iframe.src = 'ad_2023-08-21 1304-03.html' : iframe.src = 'displayAdCards.html';
+            iframes.forEach(iframe => {
+                iframe.classList.toggle('inactive');
+            });
+            cardViewActive = !cardViewActive;
+        })
+
+        iframes[0].onload = function () {
+            // Set the iframe's height to match the content's height
+            iframes[0].style.height = iframes[0].contentWindow.document.body.scrollHeight + 'px';
+        };
+
+        iframes[1].onload = function () {
+            // Set the iframe's height to match the content's height
+            iframes[1].style.height = iframes[1].contentWindow.document.body.scrollHeight + 'px';
+        };
+
+    </script>
+</body>
+
+</html>

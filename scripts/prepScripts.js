@@ -8,14 +8,42 @@ const pageDims = {
 
 convertPercent();
 removeIDs();
+injectButtons();
+
+function injectButtons() {
+    const buttons = document.createElement('template');
+    let fragment = `
+        <div id="controlButtons">
+            <button id="reorderBtn" onclick="startReordering()">start ordering items</button>
+            <button id="confirmBtn" onclick="confirmReorder()">confirm item order</button>
+            <!-- <button onclick="convertPercent()">make responsive</button> -->
+            <button onclick="save(new HtmlFrag().html);">save html</button>
+        </div>`;
+
+    buttons.innerHTML = fragment;
+    document.body.appendChild(buttons.content)
+}
 
 function HtmlFrag() {
 
     this.stylesheet = `
-        <link href="indesignTest-14-web-resources/css/viewstyles_layout.css" rel="stylesheet" type="text/css" />
-	    <link href="indesignTest-14-web-resources/css/viewstyles_banners.css" rel="stylesheet" type="text/css" />`;
+        <link href="/Users/agreider/Desktop/Projects/_Weekly Ad/Digital Weekly Ad/css/viewstyles_layout.css" rel="stylesheet" type="text/css" />
+	    <link href="/Users/agreider/Desktop/Projects/_Weekly Ad/Digital Weekly Ad/css/viewstyles_banners.css" rel="stylesheet" type="text/css" />`;
 
-    this.script = `<script src="adData.js"></script>`;
+    this.script = `<script src="/Users/agreider/Desktop/Projects/_Weekly Ad/Digital Weekly Ad/scripts/adData_banners.js"></script>`;
+
+    this.listDropdown = `
+                <div class="listDropdown">
+                    <div class="header">
+                        <h1>Shopping List</h1>
+                        <h1 id="print">🖨️</h1><h1>&darr;</h1>
+                    </div>
+                    <div class="scrollContainer">
+                        <div id="listCardContainer">
+                        </div>
+                    </div>
+                </div>
+                <div id="overlayContainer"></div>`;
 
     this.getPages = function () {
         let pages = document.getElementsByClassName("page");
@@ -35,6 +63,7 @@ function HtmlFrag() {
                ${this.stylesheet}
            </head>
            <body>
+               ${this.listDropdown}
                ${this.getPages()}
                ${this.script}
            </body>
@@ -56,15 +85,16 @@ function save(htmlContent) {
 function removeIDs() {
     let items = document.getElementsByClassName("item");
     let pages = document.getElementsByClassName("page");
-    let img = document.querySelector('.page > div > img')
+    let imgs = document.querySelectorAll('.page > div > img');
 
     Array.from(items).forEach(item => {
         item.removeAttribute('id')
     });
-
-    img.parentNode.removeAttribute('id');
-    img.parentNode.removeAttribute('class');
-    img.removeAttribute('class');
+    Array.from(imgs).forEach(img => {
+        img.parentNode.removeAttribute('id');
+        img.parentNode.removeAttribute('class');
+        img.removeAttribute('class');
+    })
 
     // get all .page and assign id page1, page2, page3...
     for (let i = 0; i < pages.length; i++) {
@@ -75,7 +105,7 @@ function removeIDs() {
 }
 
 function convertPercent() {
-    let children = document.querySelectorAll(".page > .item");
+    let children = document.querySelectorAll(".item");
     children.forEach(child => {
         let computedStyle = getComputedStyle(child)
         let transformStr = computedStyle.transform;
@@ -90,8 +120,8 @@ function convertPercent() {
         child.style.transform = `none`;
         child.style.left = `${(values[4] / parseInt(pageDims.width) * 100)}%`;
         child.style.top = `${(values[5] / parseInt(pageDims.height) * 100)}%`;
-        child.style.width = `${(width / parseInt(pageDims.width) * 100)}%`;
-        child.style.height = `${(height / parseInt(pageDims.height) * 100)}%`;
+        child.style.width = `${(width / parseInt(pageDims.width) * 102)}%`; // I changed these to 102% becuase the dimensions were consistently too small for some reason at 100%. Maybe a rounding error or something?
+        child.style.height = `${(height / parseInt(pageDims.height) * 102)}%`;
         //console.log(`NEW left: ${child.style.left}  |  top: ${child.style.top}  |  width: ${child.style.width}  |  height: ${child.style.height}`);
     });
     console.log("converted percents")
@@ -149,7 +179,7 @@ function now(truncated = false) {
     var minutes = currentDate.getMinutes().toString().padStart(2, '0');
     var seconds = currentDate.getSeconds().toString().padStart(2, '0');
 
-    var formattedDate = `${year}-${month}-${day}` + `${!truncated ? ` ${hours}${minutes}-${seconds}`:``}`;
+    var formattedDate = `${year}-${month}-${day}` + `${!truncated ? ` ${hours}${minutes}-${seconds}` : ``}`;
 
     console.log("getting now(): " + formattedDate);
     return formattedDate;
