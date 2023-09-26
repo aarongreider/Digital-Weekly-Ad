@@ -7,17 +7,49 @@
     <title>Weekly Ad</title>
     <link href="../css/viewstyles_card.css" rel="stylesheet" type="text/css" />
     <link href="../css/shoppingListStyles.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body>
+    <!-- <div class="listDropdown">
+        <div class="toolBar">
+            <div class="header">
+                <img class="icon" src="../images/material-symbols_format-list-bulleted.svg">
+                <h1>View Shopping List</h1>
+            </div>
+            <span id="print" class="material-symbols-outlined">print</span>
+        </div>
+        <div class="scrollContainer">
+            <div id="listCardContainer">
+            </div>
+        </div>
+    </div> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+        integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/CustomEase.min.js"
+        integrity="sha512-8AjW5l765ApzGk1tv9UXvcf0+CPrvJlFtmf6pPLM3AWcPM8+9aOSTjw29Sq7bQ/HJdqGjnQ3s8ztg8+ceZqwPQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"
+        integrity="sha512-S6SXKUZ11xkCoD/UuhdXG4B4iiCXng+xW2KCx0lgfQqmdqtjqGgm4WChdYIhO1F/CmH21vnkSUvPEgXNgDwkjg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"
+        integrity="sha512-Ic9xkERjyZ1xgJ5svx3y0u3xrvfT/uPkV99LBwe68xjy/mGtO+4eURHZBW2xW4SZbFrF1Tf090XqB+EVgXnVjw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="../scripts/adData_cards.js"></script>
     <script src="../scripts/shoppingList.js"></script>
+    <script src="../scripts/gsap.js"></script>
     <script>
         loadWeeklyAd().then(result => {
             console.log("cards loaded. loading shopping list");
-            
+
             loadShoppingList(result).then(result2 => {
-                console.log("shopping list loaded")
+                console.log("shopping list loaded. loading gsap")
+
+                /* handleGsap().then(result3 => {
+                    console.log("gsap loaded")
+                }) */
             })
         })
     </script>

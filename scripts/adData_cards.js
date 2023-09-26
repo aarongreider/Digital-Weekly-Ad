@@ -43,13 +43,16 @@ function getCardFrag(title, price, save, img) {
 }
 
 function jsonToCards(response) {
+    let parent = document.createElement('div');
+    parent.id = 'weeklyadContainer';
+    document.body.appendChild(parent);
     
     let div = document.createElement('div');
     div.className = 'cardContainer';
-    document.body.appendChild(div);
+    parent.appendChild(div);
 
     response.data.forEach(item => {
-        console.log(item["Product Description"])
+        //console.log(item["Product Description"])
         let card = getCardFrag(item["Product Description"], item["Cost"], item["Save"], item["Image"])
         div.append(card.content);
     });

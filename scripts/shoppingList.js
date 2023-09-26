@@ -15,11 +15,11 @@ function loadShoppingList(response) {
 }
 
 function appendShoppingList() {
-    //let parent = document.getElementById('weeklyadContainer')
+    let parent = document.getElementById('weeklyadContainer')
 
     let div = document.createElement('div');
     div.className = 'listDropdown';
-    document.body.insertBefore(div, document.body.firstChild);
+    parent.insertBefore(div, parent.firstChild);
 
     let shoppingList = getShoppingListFrag();
     div.append(shoppingList.content);
@@ -29,7 +29,7 @@ function appendShoppingList() {
 
 function setShoppingListListener() {
     /* LIST VIEW TOGGLE */
-    document.querySelector(`.listDropdown > .header`).addEventListener('click', () => {
+    document.querySelector(`.listDropdown > .toolBar`).addEventListener('click', () => {
         console.log('toggle shopping list')
         document.querySelector(`#listCardContainer`).classList.toggle('showCards')
     })
@@ -76,11 +76,14 @@ function getListCardFrag(title, price, save, img) {
 
 function getShoppingListFrag() {
     const card = document.createElement('template');
+
     let fragment = `
-            <div class="header">
-                <h1>Shopping List</h1>
-                <h1 id="print">🖨️</h1>
-                <h1>&darr;</h1>
+            <div class="toolBar">
+                <div class="header">
+                    <img class="icon" src="../images/material-symbols_format-list-bulleted.svg">
+                    <h1>View Shopping List</h1>
+                </div>
+                <span id="print" class="material-symbols-outlined">print</span>
             </div>
             <div class="scrollContainer">
                 <div id="listCardContainer">
