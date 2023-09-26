@@ -45,13 +45,30 @@
   letter-spacing: -0.8px;
   margin: 0;
 }
-.listDropdown .scrollContainer {
+
+.scrollContainer {
+  /* layout */
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
   overflow-y: scroll;
   scroll-behavior: smooth;
-  padding: 0 10px;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  padding: 14px;
+  z-index: 1001;
+  /* style */
+  background: rgba(0, 0, 0, 0.35);
+  /* effects */
+  box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
 }
-.listDropdown #listCardContainer {
-  display: none;
+.scrollContainer #listCardContainer {
+  display: flex;
   flex-direction: column;
   gap: 10px;
   margin-top: 10px;
@@ -60,7 +77,10 @@
   position: relative;
   max-height: 80vh;
 }
-.listDropdown #listCardContainer .listCard {
+.scrollContainer #listCardContainer > :last-child {
+  padding-bottom: 300px;
+}
+.scrollContainer #listCardContainer .listCard {
   /* layout */
   display: flex;
   flex-direction: row;
@@ -70,20 +90,21 @@
   padding: 8px 9px;
   gap: 10px;
   /* style */
+  cursor: grab;
   border-radius: 10px;
   background: var(--offwhite, #EDEAE7);
   /* Soft Drop */
   box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
   transition: transform 100ms cubic-bezier(0.15, 0, 0.17, 1.02), box-shadow 100ms cubic-bezier(0.15, 0, 0.17, 1.02);
 }
-.listDropdown #listCardContainer .listCard > img {
+.scrollContainer #listCardContainer .listCard > img {
   border-radius: 13px;
   -o-object-fit: cover;
      object-fit: cover;
   width: 130px;
   height: 100px;
 }
-.listDropdown #listCardContainer .listCard > .cardTextContainer {
+.scrollContainer #listCardContainer .listCard > .cardTextContainer {
   display: flex;
   padding: 7px;
   flex-direction: column;
@@ -91,7 +112,7 @@
   justify-content: center;
   gap: 6px;
 }
-.listDropdown #listCardContainer .listCard > .cardTextContainer > h2 {
+.scrollContainer #listCardContainer .listCard > .cardTextContainer > h2 {
   color: var(--dark-green, #0C5900);
   font-family: SF Pro Display;
   font-size: 20px;
@@ -102,7 +123,7 @@
   letter-spacing: -0.8px;
   margin: 0;
 }
-.listDropdown #listCardContainer .listCard > .cardTextContainer > p {
+.scrollContainer #listCardContainer .listCard > .cardTextContainer > p {
   color: var(--dark-green, #0C5900);
   font-family: SF Pro Display;
   font-size: 16px;
@@ -113,16 +134,17 @@
   letter-spacing: -0.4px;
   margin: 0;
 }
-.listDropdown #listCardContainer .listCard:hover {
+.scrollContainer #listCardContainer .listCard:hover {
   transform: translate(-1px, -2.5px);
   box-shadow: 2px 4px 10px 0px rgba(0, 0, 0, 0.36), 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
-}
-.listDropdown #listCardContainer > :last-child {
-  padding-bottom: 12px;
 }
 
 .showCards {
   display: flex !important;
+}
+
+.noScroll {
+  overflow: hidden;
 }
 
 /* css selectors for printing */

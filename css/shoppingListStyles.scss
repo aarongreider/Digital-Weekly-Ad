@@ -15,7 +15,7 @@
             color: var(--menu-black, rgba(0, 0, 0, 0.75));
         }
 
-        > * {
+        >* {
             padding: 14px;
             z-index: 1001;
             /* style */
@@ -50,14 +50,38 @@
         }
     }
 
-    .scrollContainer {
-        overflow-y: scroll;
-        scroll-behavior: smooth;
-        padding: 0 10px;
-    }
+
+}
+
+.scrollContainer {
+    /* layout */
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+
+    top: 0; left: 0;
+    height: 100%;
+    width: 100%;
+
+
+    padding: 14px;
+    z-index: 1001;
+    
+    /* style */
+    //border-radius: 12px;
+    //border: 3px solid var(--menu-grey, rgba(0, 0, 0, 0.25));
+    background: rgba(0, 0, 0, 0.35);
+    
+    /* effects */
+    box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 0.30);
+    backdrop-filter: blur(2px);
+
 
     #listCardContainer {
-        display: none;
+        display: flex;
         flex-direction: column;
         gap: 10px;
         margin-top: 10px;
@@ -65,6 +89,10 @@
         overflow: visible;
         position: relative;
         max-height: 80vh;
+
+        > :last-child {
+            padding-bottom: 300px;
+        }
 
         .listCard {
             /* layout */
@@ -76,6 +104,7 @@
             padding: 8px 9px;
             gap: 10px;
             /* style */
+            cursor:grab;
             border-radius: 10px;
             background: var(--offwhite, #EDEAE7);
             /* Soft Drop */
@@ -131,14 +160,14 @@
             box-shadow: 2px 4px 10px 0px rgba(0, 0, 0, 0.36), 1px 1px 2px 0px rgba(0, 0, 0, 0.30);
         }
     }
-
-    #listCardContainer> :last-child {
-        padding-bottom: 12px;
-    }
 }
 
 .showCards {
     display: flex !important;
+}
+
+.noScroll {
+    overflow: hidden;
 }
 
 

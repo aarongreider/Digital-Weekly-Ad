@@ -2,6 +2,7 @@ let listKey = 'shopping list';
 function loadShoppingList(response) {
     return new Promise((resolve, reject) => {
         try {
+            setUpCardContainer();
             appendShoppingList();
             setShoppingListListener();
             refreshShoppingList(listKey)
@@ -29,10 +30,16 @@ function appendShoppingList() {
 
 function setShoppingListListener() {
     /* LIST VIEW TOGGLE */
-    document.querySelector(`.listDropdown > .toolBar`).addEventListener('click', () => {
-        console.log('toggle shopping list')
-        document.querySelector(`#listCardContainer`).classList.toggle('showCards')
-    })
+    let items = [`.listDropdown > .toolBar`, `.scrollContainer`]
+    items.forEach(item => {
+        document.querySelector(item).addEventListener('click', () => {
+            console.log('toggle shopping list')
+            //document.querySelector(`#listCardContainer`).classList.toggle('showCards')
+            document.querySelector(`.scrollContainer`).classList.toggle('showCards')
+            document.body.classList.toggle("noScroll");
+        })
+    });
+
 }
 
 function setPrintListener() {
@@ -84,12 +91,21 @@ function getShoppingListFrag() {
                     <h1>View Shopping List</h1>
                 </div>
                 <span id="print" class="material-symbols-outlined">print</span>
-            </div>
-            <div class="scrollContainer">
-                <div id="listCardContainer">
-                </div>
             </div>`;
 
     card.innerHTML = fragment;
     return card;
+}
+
+function setUpCardContainer() {
+    const container = document.createElement('template');
+
+    let fragment = `
+        <div class="scrollContainer">
+            <div id="listCardContainer">
+            </div>
+        </div>`;
+
+    container.innerHTML = fragment;
+    document.body.append(container.content)
 }
