@@ -21,15 +21,16 @@ function refreshShoppingList(key = 'shopping list') {
     // iterate over localStorage object and reconstruct the shopping list widget
 
     console.log('refreshing shopping list')
-
+    let counter = document.getElementById('listCounter');
     let container = document.getElementById('listCardContainer');
     container.innerHTML = '';
     let list = JSON.parse(localStorage.getItem(key));
-    list = [...new Set(list)]
+    counter.textContent = `${list.length}` // refresh the list counter count
     list.forEach(itemData => {
         let card = getListCardFrag(itemData["Product Description"], itemData["Cost"], itemData["Save"], itemData["Image"])
         container.append(card.content);
     });
+    ScrollTrigger.refresh();
 }
 
 function setShoppingListListener() {
@@ -51,10 +52,14 @@ function setShoppingListListener() {
 }
 
 function setPrintListener() {
-    document.getElementById("print").addEventListener('click', () => {
-        console.log("printing... or attempting to")
-        window.print();
+    Array.from(document.getElementsByClassName('print')).forEach(button => {
+        button.addEventListener('click', () => {
+            console.log("printing... or attempting to")
+            window.print();
+        })
     })
+    
+    
 }
 
 function appendShoppingList() {
@@ -137,6 +142,7 @@ function setUpCardContainer() {
         <div class="scrollContainer">
             <div id="listCardContainer">
             </div>
+            <span id="scrollPrint" class="material-symbols-outlined print">print</span>
         </div>`;
 
     container.innerHTML = fragment;
@@ -152,7 +158,7 @@ function getListCardFrag(title, price, save, img) {
 					<h2>${title}</h2>
 					<p>${price}</p>
 					<p>Save ${save}</p>
-                    <span class="material-symbols-outlined deleteButton">delete</span>
+                    <span class="material-symbols-outlined button deleteButton ">delete</span>
 				</div>
 			<div></div>`;
 
@@ -168,8 +174,9 @@ function getShoppingListFrag() {
                 <div class="header">
                     <img class="icon" src="../images/material-symbols_format-list-bulleted.svg">
                     <h1>View Shopping List</h1>
+                    <span id="listCounter" class="button">0</span>
                 </div>
-                <span id="print" class="material-symbols-outlined">print</span>
+                <span class="material-symbols-outlined print">print</span>
             </div>`;
 
     card.innerHTML = fragment;

@@ -66,12 +66,14 @@
   box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
   -webkit-backdrop-filter: blur(2px);
           backdrop-filter: blur(2px);
+  /*     #listFlex {
+      display: flex;
+      gap: 15px; */
 }
 .scrollContainer #listCardContainer {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: 10px;
   max-width: 450px;
   overflow: visible;
   position: relative;
@@ -147,6 +149,33 @@
   overflow: hidden;
 }
 
+.button {
+  /* style */
+  border-radius: 200px;
+  border: 3px solid #C6BCB3;
+  background: #EDEAE7;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25), 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+#listCounter {
+  position: absolute;
+  top: -13px;
+  right: -12px;
+  height: 24px;
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* style */
+  background: rgb(68, 117, 82);
+  /* typography */
+  font-size: 14px;
+  color: var(--offwhite, #EDEAE7) !important;
+  font-family: SF Pro Display, sans-serif;
+  font-weight: 300;
+}
+
 .deleteButton {
   position: absolute;
   top: -8px;
@@ -154,12 +183,24 @@
   color: darkred;
   height: 30px;
   padding: 5px 7px 0px;
-  /* style */
-  border-radius: 200px;
-  border: 3px solid #C6BCB3;
-  background: #EDEAE7;
-  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25), 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+}
+
+.print {
+  padding: 14px;
+  z-index: 1001;
+  border-radius: 12px;
+  border: 3px solid var(--menu-grey, rgba(0, 0, 0, 0.25));
+  background: rgba(237, 234, 231, 0.65);
   cursor: pointer;
+  box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
+  -webkit-backdrop-filter: blur(32px);
+  backdrop-filter: blur(32px);
+  color: var(--menu-black, rgba(0, 0, 0, 0.75));
+}
+
+#scrollPrint {
+  position: sticky;
+  top: 0px;
 }
 
 /* css selectors for printing */
