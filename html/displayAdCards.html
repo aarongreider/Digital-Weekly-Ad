@@ -12,24 +12,6 @@
 </head>
 
 <body>
-    <!-- <div class="listDropdown">
-        <div class="toolBar">
-            <div class="header">
-                <img class="icon" src="../images/material-symbols_format-list-bulleted.svg">
-                <h1>View Shopping List</h1>
-            </div>
-            <span id="print" class="material-symbols-outlined">print</span>
-        </div>
-        <div class="scrollContainer">
-            <div id="listCardContainer">
-            </div>
-        </div>
-    </div> -->
-
-    <!-- <div class="scrollContainer">
-        <div id="listCardContainer">
-        </div>
-    </div> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
         integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -46,6 +28,11 @@
     <script src="../scripts/shoppingList.js"></script>
     <script src="../scripts/gsap.js"></script>
     <script>
+        let lsProps = {
+            image: "Image"
+        }
+        let listKey = 'shopping list';
+        
         loadWeeklyAd().then(result => {
             console.log("cards loaded. loading shopping list");
 

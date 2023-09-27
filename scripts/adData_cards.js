@@ -10,9 +10,10 @@ function loadWeeklyAd() {
             .then(response => {
                 // Process the JSON data here
                 console.log(response);
-                jsonToCards(response)
+                jsonToCards(response);
+                initializeLocalStorage();
                 setAddButtonListeners(response);
-                resolve(response)
+                resolve(response);
             })
             .catch(error => {
                 // Handle errors here
@@ -46,7 +47,7 @@ function jsonToCards(response) {
     let parent = document.createElement('div');
     parent.id = 'weeklyadContainer';
     document.body.appendChild(parent);
-    
+
     let div = document.createElement('div');
     div.className = 'cardContainer';
     parent.appendChild(div);
@@ -58,27 +59,21 @@ function jsonToCards(response) {
     });
 }
 
-
 function setAddButtonListeners(response) {
-    /* LOCALSTORAGE */
     // add a click listener to every add to list button
-    // the item's data is stored within the scope of the listener. 
+    // the item's data is stored within the scope of the listener.
+    Array.from(document.getElementsByClassName('add')).forEach(function (button, i) {
+        console.log("adding event listener to class items .add")
+        button.addEventListener('click', (event) => {
+            console.log('add to list click')
+            addToList(event.target, response.data[i]);
+        });
+    });
+}
+
+function initializeLocalStorage() {
     //localStorage.clear();
     if (localStorage.getItem(listKey) === null) {
         localStorage.setItem(listKey, '[]');
     }
-
-    Array.from(document.getElementsByClassName('add')).forEach(function (button, i) {
-        console.log("adding event listener to class items .add")
-        button.addEventListener('click', () => {
-            console.log('add to list click')
-
-            let list = JSON.parse(localStorage.getItem(listKey))
-            list.push(response.data[i])
-            localStorage.setItem(listKey, JSON.stringify(list));
-
-            console.log(JSON.parse(localStorage.getItem(listKey)))
-            refreshShoppingList(listKey);
-        });
-    });
 }
