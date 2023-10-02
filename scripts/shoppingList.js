@@ -27,7 +27,7 @@ function refreshShoppingList(key = 'shopping list') {
     let list = JSON.parse(localStorage.getItem(key));
     counter.textContent = `${list.length}` // refresh the list counter count
     list.forEach(itemData => {
-        let card = getListCardFrag(itemData["Product Description"], itemData["Cost"], itemData["Save"], itemData["Image"])
+        let card = getListCardFrag(itemData["Product Description"], itemData["Cost"], itemData["Save"], itemData["Image"], itemData["quantity"] ? itemData["quantity"] : 1)
         container.append(card.content);
     });
     ScrollTrigger.refresh();
@@ -58,8 +58,8 @@ function setPrintListener() {
             window.print();
         })
     })
-    
-    
+
+
 }
 
 function appendShoppingList() {
@@ -79,20 +79,49 @@ function setListCardListeners() {
     let container = document.getElementById('listCardContainer');
     container.addEventListener('click', (event) => {
         if (event.target.classList.contains('deleteButton')) {
-            removeFromList(event.target);
+            alterLocalStorage(actions.remove, event.target)
+        } else if (event.target.classList.contains('quantityAdd')) {
+            //editQuantity(event.target, true);
+            alterLocalStorage(actions.update, event.target, undefined, true);
+        } else if (event.target.classList.contains('quantitySubtract')) {
+            //editQuantity(event.target, false);
+            alterLocalStorage(actions.update, event.target, undefined, false);
         }
     })
 }
 
-function removeFromList(target) {
-    console.log(`deleting item ${target}`)
+/* function editQuantity(target, isAdding) {
+    const parentCard = target.closest('.listCard');
+    const quantityNode = parentCard.querySelector('.quantity');
+    let quantity = parseInt(quantityNode.innerHTML);
+
+    if (isAdding) {
+        console.log('add quantity')
+        quantityNode.textContent = quantity + 1;
+    } else {
+        console.log('subtract quantity')
+        quantityNode.textContent = quantity - 1;
+        if (quantity - 1 <= 0) {
+            setTimeout(() => { alterLocalStorage(actions.remove, target) }, 200);
+        }
+    }
+}
+
+function updateListItemQuantity(target) {
+
+}
+
+function updateTotal() {
+
+}
+
+ function removeFromList(target) {
+    console.log(`deleting item ${target}`);
     const parentCard = target.closest('.listCard');
     const imgElement = parentCard.querySelector('img');
-    // Get the src attribute value of the corresponding img
+    // Get the src attribute value of the sibling img
     const imgSrc = imgElement.getAttribute('src');
 
-    // Use imgSrc as needed
-    console.log('Clicked img src:', imgSrc);
     let foundIndex = getLocalStorageItemMatch(imgSrc, lsProps.image, listKey)
     if (foundIndex !== undefined) {
         let list = JSON.parse(localStorage.getItem(listKey));
@@ -105,19 +134,79 @@ function removeFromList(target) {
 function addToList(target, response) {
     const parentCard = target.closest('.card');
     const imgElement = parentCard.querySelector('img');
-    // Get the src attribute value of the corresponding img
+    // Get the src attribute value of the sibling img
     const imgSrc = imgElement.getAttribute('src');
 
-    let foundIndex = getLocalStorageItemMatch(imgSrc, lsProps.image, listKey)
+    let foundIndex = getLocalStorageItemMatch(imgSrc, lsProps.image, listKey) // hypothetically no blocks should have duplicate images, so for now I'm using the img src as a unique key for comparing ad items
     if (foundIndex == undefined) {
         let list = JSON.parse(localStorage.getItem(listKey))
         list.push(response)
         localStorage.setItem(listKey, JSON.stringify(list));
-
-        console.log(JSON.parse(localStorage.getItem(listKey)))
         refreshShoppingList(listKey);
     }
+} */
+
+function alterLocalStorage(action, target, data = undefined, isAdding = false) {
+    let parentCard;
+    switch (action) {
+        case 'add':
+            parentCard = target.closest('.card');
+            break;
+        case 'remove':
+            parentCard = target.closest('.listCard');
+            break;
+        case 'update':
+            parentCard = target.closest('.listCard');
+            break;
+        default:
+            console.log("Something's not right");
+            return;
+    }
+
+    // Get the src attribute value of the sibling img
+    const imgElement = parentCard.querySelector('img');
+    const imgSrc = imgElement.getAttribute('src');
+    let foundIndex = getLocalStorageItemMatch(imgSrc, lsProps.image, listKey) // hypothetically no blocks should have duplicate images, so for now I'm using the img src as a unique key for comparing ad items
+    let list = JSON.parse(localStorage.getItem(listKey))
+
+    switch (action) {
+        case 'add':
+            if (foundIndex == undefined) { // if it is undefined, the target was not found on the list, so we're okay to add it
+                list.push(data)
+            }
+            break;
+        case 'remove':
+            if (foundIndex !== undefined) {
+                list.splice(foundIndex, 1);
+            }
+            break;
+        case 'update':
+            const quantityNode = parentCard.querySelector('.quantity');
+            let quantity = parseInt(quantityNode.innerHTML);
+
+            if (isAdding) {
+                console.log('add quantity')
+                quantityNode.textContent = quantity + 1;
+                list[foundIndex].quantity = quantity + 1;
+            } else {
+                console.log('subtract quantity')
+                quantityNode.textContent = quantity - 1;
+                list[foundIndex].quantity = quantity - 1;
+                if (quantity - 1 <= 0) {
+                    setTimeout(() => { alterLocalStorage(actions.remove, target) }, 200);
+                }
+            }
+            break;
+        default:
+            console.log("Something's not right");
+            return;
+    }
+
+    localStorage.setItem(listKey, JSON.stringify(list));
+    if (action == "add" || action=="remove") refreshShoppingList(listKey);
 }
+
+
 
 function getLocalStorageItemMatch(value, prop, key = listKey) {
     let list = JSON.parse(localStorage.getItem(key));
@@ -142,14 +231,17 @@ function setUpCardContainer() {
         <div class="scrollContainer">
             <div id="listCardContainer">
             </div>
-            <span id="scrollPrint" class="material-symbols-outlined print">print</span>
+            <div id="listControls">
+                <span id="scrollPrint" class="material-symbols-outlined print">print</span>
+                <button id="totalButton"><p>Total:<span id="total">$0.00</span></p></button>
+            </div>
         </div>`;
 
     container.innerHTML = fragment;
     document.body.append(container.content)
 }
 
-function getListCardFrag(title, price, save, img) {
+function getListCardFrag(title, price, save, img, quantity) {
     const listCard = document.createElement('template');
     let fragment = `
             <div><div class="listCard">
@@ -159,6 +251,11 @@ function getListCardFrag(title, price, save, img) {
 					<p>${price}</p>
 					<p>Save ${save}</p>
                     <span class="material-symbols-outlined button deleteButton ">delete</span>
+                    <div class="quantityControls">
+                        <span class="material-symbols-outlined quantityButton quantitySubtract">do_not_disturb_on</span>
+                        <span class="quantity">${quantity}</span>
+                        <span class="material-symbols-outlined quantityButton quantityAdd"> add_circle </span>
+                    </div>
 				</div>
 			<div></div>`;
 

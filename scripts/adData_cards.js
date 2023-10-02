@@ -66,7 +66,8 @@ function setAddButtonListeners(response) {
         console.log("adding event listener to class items .add")
         button.addEventListener('click', (event) => {
             console.log('add to list click')
-            addToList(event.target, response.data[i]);
+            //addToList(event.target, response.data[i]);
+            alterLocalStorage(actions.add, event.target, response.data[i]);
         });
     });
 }

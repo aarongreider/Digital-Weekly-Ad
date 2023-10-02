@@ -33,6 +33,12 @@
         }
         let listKey = 'shopping list';
 
+        let actions = {
+            add: "add",
+            remove: "remove",
+            update: "update"
+        }
+
         loadWeeklyAd().then(result => {
             console.log("cards loaded. loading shopping list");
 

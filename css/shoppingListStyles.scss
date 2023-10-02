@@ -1,3 +1,27 @@
+// Variables
+$font-family: 'SF Pro Display', sans-serif;
+$menu-black: rgba(0, 0, 0, 0.75);
+$menu-grey: rgba(0, 0, 0, 0.25);
+$offwhite: #EDEAE7;
+$dark-green: #0C5900;
+$soft-drop: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 0.30);
+
+// Mixins
+@mixin card-styles {
+    // Common card styles
+    border-radius: 10px;
+    background: $offwhite;
+    box-shadow: $soft-drop;
+    /* transition: transform 100ms cubic-bezier(0.15, 0, 0.17, 1.02),
+                box-shadow 100ms cubic-bezier(0.15, 0, 0.17, 1.02); */
+}
+
+
+
+* {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
 .listDropdown {
     /* layout */
     position: fixed;
@@ -12,7 +36,7 @@
         gap: 14px;
 
         * {
-            color: var(--menu-black, rgba(0, 0, 0, 0.75));
+            color: $menu-black;
         }
 
         >* {
@@ -20,11 +44,11 @@
             z-index: 1001;
             /* style */
             border-radius: 12px;
-            border: 3px solid var(--menu-grey, rgba(0, 0, 0, 0.25));
+            border: 3px solid $menu-grey;
             background: rgba(237, 234, 231, 0.65);
             cursor: pointer;
             /* effects */
-            box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 0.30);
+            box-shadow: $soft-drop;
             backdrop-filter: blur(32px);
         }
 
@@ -36,8 +60,8 @@
             width: auto;
 
             h1 {
-                /* color: var(--dark-green, #0C5900); */
-                font-family: SF Pro Display;
+                /* color: $dark-green; */
+                font-family: $font-family;
                 font-size: 18px;
                 font-style: normal;
                 font-weight: 700;
@@ -46,6 +70,25 @@
                 /* 25.32px */
                 letter-spacing: -0.8px;
                 margin: 0;
+            }
+
+            #listCounter {
+                position: absolute;
+                top: -13px;
+                right: -12px;
+
+                height: 24px;
+                width: 24px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                /* style */
+                background: rgb(68, 117, 82);
+                /* typography */
+                font-size: 14px;
+                color: $offwhite !important;
+                font-family: $font-family;
+                font-weight: 300;
             }
         }
     }
@@ -56,6 +99,7 @@
     display: none;
     align-items: flex-start;
     justify-content: center;
+    gap: 12px;
     position: fixed;
     overflow-y: scroll;
     scroll-behavior: smooth;
@@ -65,23 +109,17 @@
     height: 100%;
     width: 100%;
 
-
     padding: 14px;
     z-index: 1001;
 
     /* style */
     //border-radius: 12px;
-    //border: 3px solid var(--menu-grey, rgba(0, 0, 0, 0.25));
+    //border: 3px solid $menu-grey;
     background: rgba(0, 0, 0, 0.35);
 
     /* effects */
-    box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 0.30);
+    box-shadow: $soft-drop;
     backdrop-filter: blur(2px);
-
-
-    /*     #listFlex {
-        display: flex;
-        gap: 15px; */
 
     #listCardContainer {
         display: flex;
@@ -91,7 +129,7 @@
         max-width: 450px;
         overflow: visible;
         position: relative;
-        max-height: 80vh;
+        //max-height: 80vh;
 
         > :last-child {
             padding-bottom: 300px;
@@ -109,9 +147,9 @@
             /* style */
             cursor: grab;
             border-radius: 10px;
-            background: var(--offwhite, #EDEAE7);
+            background: $offwhite;
             /* Soft Drop */
-            box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 0.30);
+            box-shadow: $soft-drop;
             transition: transform 100ms cubic-bezier(0.15, 0, 0.17, 1.02),
                 box-shadow 100ms cubic-bezier(0.15, 0, 0.17, 1.02);
 
@@ -131,8 +169,8 @@
                 gap: 6px;
 
                 >h2 {
-                    color: var(--dark-green, #0C5900);
-                    font-family: SF Pro Display;
+                    color: $dark-green;
+                    font-family: $font-family;
                     font-size: 20px;
                     font-style: normal;
                     font-weight: 700;
@@ -144,8 +182,8 @@
                 }
 
                 >p {
-                    color: var(--dark-green, #0C5900);
-                    font-family: SF Pro Display;
+                    color: $dark-green;
+                    font-family: $font-family;
                     font-size: 16px;
                     font-style: normal;
                     font-weight: 400;
@@ -155,12 +193,59 @@
 
                     margin: 0;
                 }
+
+                .deleteButton {
+                    position: absolute;
+                    top: -8px;
+                    left: -16px;
+
+                    color: darkred;
+                    height: 30px;
+                    padding: 5px 7px 0px;
+                }
+
+                .quantityControls {
+                    /* layout */
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 8px;
+                    /* typography */
+                    font-family: $font-family;
+                    font-weight: 500;
+                    color: $dark-green;
+
+                    .quantityButton {
+                        cursor: pointer;
+                    }
+                }
             }
         }
 
         .listCard:hover {
             transform: translate(-1px, -2.5px);
             box-shadow: 2px 4px 10px 0px rgba(0, 0, 0, 0.36), 1px 1px 2px 0px rgba(0, 0, 0, 0.30);
+        }
+    }
+
+    #listControls {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 11px;
+        position: sticky;
+        top: 0;
+
+        #scrollPrint {
+            //height: 24px;
+            align-items: center;
+            justify-content: center;
+            background: $offwhite;
+        }
+
+        #totalButton {
+            @include card-styles();
         }
     }
 }
@@ -185,53 +270,19 @@
     cursor: pointer;
 }
 
-#listCounter {
-    position: absolute;
-    top: -13px;
-    right: -12px;
 
-    height: 24px;
-    width: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* style */
-    background: rgb(68, 117, 82);
-    /* typography */
-    font-size: 14px;
-    color: var(--offwhite, #EDEAE7) !important;
-    font-family: SF Pro Display, sans-serif;
-    font-weight: 300;
-}
-
-.deleteButton {
-    position: absolute;
-    top: -8px;
-    left: -16px;
-
-    color: darkred;
-    height: 30px;
-    padding: 5px 7px 0px;
-}
 
 .print {
     padding: 14px;
     z-index: 1001;
     border-radius: 12px;
-    border: 3px solid var(--menu-grey, rgba(0, 0, 0, 0.25));
+    border: 3px solid $menu-grey;
     background: rgba(237, 234, 231, 0.65);
     cursor: pointer;
-    box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: $soft-drop;
     -webkit-backdrop-filter: blur(32px);
     backdrop-filter: blur(32px);
-    color: var(--menu-black, rgba(0, 0, 0, 0.75));
-}
-
-#scrollPrint {
-    position: sticky;
-    //height: 24px;
-    top: 0px;
-
+    color: $menu-black;
 }
 
 
