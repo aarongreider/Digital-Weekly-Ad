@@ -250,8 +250,6 @@ $soft-drop: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 
     }
 }
 
-
-
 .showCards {
     display: flex !important;
 }
@@ -270,8 +268,6 @@ $soft-drop: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 
     cursor: pointer;
 }
 
-
-
 .print {
     padding: 14px;
     z-index: 1001;
@@ -289,27 +285,43 @@ $soft-drop: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 
 
 /* css selectors for printing */
 @media print {
-    body :not(.listDropdown *):not(.listDropdown) {
+    body :not(.scrollContainer *):not(.scrollContainer) {
         display: none !important;
     }
 
-    .listDropdown {
-        background-color: white !important;
-        width: 96vw !important;
+    .scrollContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
         position: relative;
+        overflow: visible;
+        background: white;
+        box-shadow: none;
 
-        .scrollContainer {
-            overflow: visible;
+        #listCardContainer {
+            display: flex;
+            order: 2;
+            height: auto;
+            max-height: none;
+            width: 100vw;
 
-            #listCardContainer {
-                display: flex;
-                height: auto;
-                max-height: none;
+            .listCard {
+                background-color: white !important;
+                width: 90vw !important;
 
-                .listCard {
-                    background-color: white !important;
-                    width: 90vw !important;
-                }
+                 > .cardTextContainer .deleteButton {
+                    display: none;
+                 }
+            }
+        }
+
+        #listControls {
+            order: 1;
+            flex-direction: row;
+
+            #scrollPrint {
+                display: none;
             }
         }
     }

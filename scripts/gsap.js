@@ -1,14 +1,10 @@
-gsap.registerPlugin(ScrollTrigger);
+//gsap.registerPlugin(ScrollTrigger);
 
 function handleGsap() {
     return new Promise((resolve, reject) => {
         try {
-            console.log("gsaping")
+            /*console.log("gsaping")
             ScrollTrigger.refresh();
-            /* gsap.to("#scrollPrint", {
-                delay: 3,
-                marginTop: "1000px",
-            }); */
 
             ScrollTrigger.create({
                 trigger: ".scrollContainer",
@@ -17,12 +13,17 @@ function handleGsap() {
                 markers: true,
                 pin: true
             });
-            /* ScrollTrigger.create({
+             ScrollTrigger.create({
                 trigger: ".card",
                 start: "top top",
                 end: "bottom 50px",
                 pin: true
             }); */
+            let example = document.getElementById('listCardContainer')
+            new Sortable(example, {
+                animation: 150,
+                ghostClass: 'listCard'
+            });
 
             resolve(true);
         } catch (error) {

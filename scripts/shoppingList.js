@@ -5,7 +5,7 @@ function loadShoppingList(response) {
             appendShoppingList();
             setShoppingListListener();
             setListCardListeners();
-            refreshShoppingList(listKey)
+            refreshShoppingList(listKey);
             setPrintListener();
             resolve(true);
         } catch (error) {
@@ -30,121 +30,8 @@ function refreshShoppingList(key = 'shopping list') {
         let card = getListCardFrag(itemData["Product Description"], itemData["Cost"], itemData["Save"], itemData["Image"], itemData["quantity"] ? itemData["quantity"] : 1)
         container.append(card.content);
     });
-    ScrollTrigger.refresh();
+    updateTotal(list)
 }
-
-function setShoppingListListener() {
-    /* LIST VIEW TOGGLE */
-    let items = [`.listDropdown > .toolBar`, `.scrollContainer`]
-    items.forEach(item => {
-        document.querySelector(item).addEventListener('click', (event) => {
-
-            if (event.target.classList.contains('scrollContainer') ||
-                event.target === document.querySelector(".header") ||
-                event.target === document.querySelector(".header > h1") ||
-                event.target === document.querySelector(".header > img")) {
-                console.log('toggle shopping list')
-                document.querySelector(`.scrollContainer`).classList.toggle('showCards')
-                document.body.classList.toggle("noScroll");
-            }
-        })
-    });
-}
-
-function setPrintListener() {
-    Array.from(document.getElementsByClassName('print')).forEach(button => {
-        button.addEventListener('click', () => {
-            console.log("printing... or attempting to")
-            window.print();
-        })
-    })
-
-
-}
-
-function appendShoppingList() {
-    let parent = document.getElementById('weeklyadContainer')
-    let div = document.createElement('div');
-    div.className = 'listDropdown';
-    parent.insertBefore(div, parent.firstChild);
-
-    let shoppingList = getShoppingListFrag();
-    div.append(shoppingList.content);
-
-
-}
-
-function setListCardListeners() {
-    // set the listener associated with the move and delete functions
-    let container = document.getElementById('listCardContainer');
-    container.addEventListener('click', (event) => {
-        if (event.target.classList.contains('deleteButton')) {
-            alterLocalStorage(actions.remove, event.target)
-        } else if (event.target.classList.contains('quantityAdd')) {
-            //editQuantity(event.target, true);
-            alterLocalStorage(actions.update, event.target, undefined, true);
-        } else if (event.target.classList.contains('quantitySubtract')) {
-            //editQuantity(event.target, false);
-            alterLocalStorage(actions.update, event.target, undefined, false);
-        }
-    })
-}
-
-/* function editQuantity(target, isAdding) {
-    const parentCard = target.closest('.listCard');
-    const quantityNode = parentCard.querySelector('.quantity');
-    let quantity = parseInt(quantityNode.innerHTML);
-
-    if (isAdding) {
-        console.log('add quantity')
-        quantityNode.textContent = quantity + 1;
-    } else {
-        console.log('subtract quantity')
-        quantityNode.textContent = quantity - 1;
-        if (quantity - 1 <= 0) {
-            setTimeout(() => { alterLocalStorage(actions.remove, target) }, 200);
-        }
-    }
-}
-
-function updateListItemQuantity(target) {
-
-}
-
-function updateTotal() {
-
-}
-
- function removeFromList(target) {
-    console.log(`deleting item ${target}`);
-    const parentCard = target.closest('.listCard');
-    const imgElement = parentCard.querySelector('img');
-    // Get the src attribute value of the sibling img
-    const imgSrc = imgElement.getAttribute('src');
-
-    let foundIndex = getLocalStorageItemMatch(imgSrc, lsProps.image, listKey)
-    if (foundIndex !== undefined) {
-        let list = JSON.parse(localStorage.getItem(listKey));
-        list.splice(foundIndex, 1)
-        localStorage.setItem(listKey, JSON.stringify(list));
-        refreshShoppingList(listKey);
-    }
-}
-
-function addToList(target, response) {
-    const parentCard = target.closest('.card');
-    const imgElement = parentCard.querySelector('img');
-    // Get the src attribute value of the sibling img
-    const imgSrc = imgElement.getAttribute('src');
-
-    let foundIndex = getLocalStorageItemMatch(imgSrc, lsProps.image, listKey) // hypothetically no blocks should have duplicate images, so for now I'm using the img src as a unique key for comparing ad items
-    if (foundIndex == undefined) {
-        let list = JSON.parse(localStorage.getItem(listKey))
-        list.push(response)
-        localStorage.setItem(listKey, JSON.stringify(list));
-        refreshShoppingList(listKey);
-    }
-} */
 
 function alterLocalStorage(action, target, data = undefined, isAdding = false) {
     let parentCard;
@@ -203,10 +90,9 @@ function alterLocalStorage(action, target, data = undefined, isAdding = false) {
     }
 
     localStorage.setItem(listKey, JSON.stringify(list));
-    if (action == "add" || action=="remove") refreshShoppingList(listKey);
+    if (action == "add" || action == "remove") refreshShoppingList(listKey);
+    updateTotal(list);
 }
-
-
 
 function getLocalStorageItemMatch(value, prop, key = listKey) {
     let list = JSON.parse(localStorage.getItem(key));
@@ -219,10 +105,81 @@ function getLocalStorageItemMatch(value, prop, key = listKey) {
     return undefined;
 }
 
+function updateTotal(list) {
+    let total = 0;
+    list.forEach(itemData => {
+        let price = parseFloat(`${itemData["Cost"]}`.replace('$', ''));
+        let q = itemData["quantity"] ? itemData["quantity"] : 1;
+        total += q * price;
+    });
 
-/* FRAGMENTS */
-/* FRAGMENTS */
-/* FRAGMENTS */
+    document.querySelector("#total").textContent = `$${total.toFixed(2)}`;
+}
+
+
+
+/* LISTENERS */
+/* LISTENERS */
+/* LISTENERS */
+
+function setShoppingListListener() {
+    /* LIST VIEW TOGGLE */
+    let items = [`.listDropdown > .toolBar`, `.scrollContainer`]
+    items.forEach(item => {
+        document.querySelector(item).addEventListener('click', (event) => {
+
+            if (event.target.classList.contains('scrollContainer') ||
+                event.target === document.querySelector(".header") ||
+                event.target === document.querySelector(".header > h1") ||
+                event.target === document.querySelector(".header > img")) {
+                console.log('toggle shopping list')
+                document.querySelector(`.scrollContainer`).classList.toggle('showCards')
+                document.body.classList.toggle("noScroll");
+            }
+        })
+    });
+}
+
+function setPrintListener() {
+    Array.from(document.getElementsByClassName('print')).forEach(button => {
+        button.addEventListener('click', () => {
+            console.log("printing... or attempting to")
+            window.print();
+        })
+    })
+}
+
+function setListCardListeners() {
+    // set the listener associated with the move and delete functions
+    let container = document.getElementById('listCardContainer');
+    container.addEventListener('click', (event) => {
+        if (event.target.classList.contains('deleteButton')) {
+            alterLocalStorage(actions.remove, event.target)
+        } else if (event.target.classList.contains('quantityAdd')) {
+            //editQuantity(event.target, true);
+            alterLocalStorage(actions.update, event.target, undefined, true);
+        } else if (event.target.classList.contains('quantitySubtract')) {
+            //editQuantity(event.target, false);
+            alterLocalStorage(actions.update, event.target, undefined, false);
+        }
+    })
+}
+
+
+
+/* FRAGMENTS & SETUP */
+/* FRAGMENTS & SETUP */
+/* FRAGMENTS & SETUP */
+
+function appendShoppingList() {
+    let parent = document.getElementById('weeklyadContainer')
+    let div = document.createElement('div');
+    div.className = 'listDropdown';
+    parent.insertBefore(div, parent.firstChild);
+
+    let shoppingList = getShoppingListFrag();
+    div.append(shoppingList.content);
+}
 
 function setUpCardContainer() {
     const container = document.createElement('template');
