@@ -8,6 +8,7 @@
   width: auto;
   bottom: 36px;
   left: 36px;
+  z-index: 10;
 }
 .listDropdown .toolBar {
   display: flex;
@@ -159,7 +160,7 @@
   top: -8px;
   left: -16px;
   color: darkred;
-  height: 30px;
+  height: 40px;
   padding: 5px 7px 0px;
 }
 .scrollContainer #listCardContainer .listCard > .cardTextContainer .quantityControls {
@@ -233,7 +234,7 @@
 }
 
 .ghost {
-  opacity: 0.25;
+  opacity: 0.5;
 }
 
 /* css selectors for printing */

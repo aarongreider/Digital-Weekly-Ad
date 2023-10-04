@@ -28,6 +28,7 @@ $soft-drop: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 
     width: auto;
     bottom: 36px;
     left: 36px;
+    z-index: 10;
 
 
     .toolBar {
@@ -200,7 +201,7 @@ $soft-drop: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 
                     left: -16px;
 
                     color: darkred;
-                    height: 30px;
+                    height: 40px;
                     padding: 5px 7px 0px;
                 }
 
@@ -283,7 +284,7 @@ $soft-drop: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 
 
 
 .ghost {
-    opacity: .25;
+    opacity: .5;
 }
 /* css selectors for printing */
 @media print {
