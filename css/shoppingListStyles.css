@@ -237,6 +237,24 @@
   opacity: 0.5;
 }
 
+@media only screen and (max-width: 600px) {
+  .card {
+    width: 140px;
+  }
+  .scrollContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .scrollContainer #listCardContainer {
+    order: 2;
+    width: 100vw;
+  }
+  .scrollContainer #listControls {
+    order: 1;
+    flex-direction: row;
+  }
+}
 /* css selectors for printing */
 @media print {
   body :not(.scrollContainer *):not(.scrollContainer) {

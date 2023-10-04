@@ -286,46 +286,69 @@ $soft-drop: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 
 .ghost {
     opacity: .5;
 }
-/* css selectors for printing */
-@media print {
-    body :not(.scrollContainer *):not(.scrollContainer) {
-        display: none !important;
+
+@media only screen and (max-width: 600px) {
+    .card {
+        width: 140px;
     }
 
     .scrollContainer {
-        display: flex;
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
-        position: relative;
-        overflow: visible;
-        background: white;
-        box-shadow: none;
 
         #listCardContainer {
-            display: flex;
             order: 2;
-            height: auto;
-            max-height: none;
             width: 100vw;
-
-            .listCard {
-                background-color: white !important;
-                width: 90vw !important;
-
-                 > .cardTextContainer .deleteButton {
-                    display: none;
-                 }
-            }
         }
 
         #listControls {
             order: 1;
             flex-direction: row;
-
-            #scrollPrint {
-                display: none;
-            }
         }
     }
 }
+
+    /* css selectors for printing */
+    @media print {
+        body :not(.scrollContainer *):not(.scrollContainer) {
+            display: none !important;
+        }
+
+        .scrollContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            position: relative;
+            overflow: visible;
+            background: white;
+            box-shadow: none;
+
+            #listCardContainer {
+                display: flex;
+                order: 2;
+                height: auto;
+                max-height: none;
+                width: 100vw;
+
+                .listCard {
+                    background-color: white !important;
+                    width: 90vw !important;
+
+                    >.cardTextContainer .deleteButton {
+                        display: none;
+                    }
+                }
+            }
+
+            #listControls {
+                order: 1;
+                flex-direction: row;
+
+                #scrollPrint {
+                    display: none;
+                }
+            }
+        }
+    }
