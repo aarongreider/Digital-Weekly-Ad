@@ -248,6 +248,7 @@
   }
   .scrollContainer #listCardContainer {
     order: 2;
+    width: 92vw;
   }
   .scrollContainer #listControls {
     order: 1;
