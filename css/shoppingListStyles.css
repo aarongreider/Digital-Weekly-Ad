@@ -232,6 +232,10 @@
   color: rgba(0, 0, 0, 0.75);
 }
 
+.ghost {
+  opacity: 0.25;
+}
+
 /* css selectors for printing */
 @media print {
   body :not(.scrollContainer *):not(.scrollContainer) {

@@ -8,7 +8,8 @@
 
 .card {
 	display: flex;
-	width: 300px;
+	width: 200px;
+    max-width: 300px;
 	padding: 8px 9px;
 	flex-direction: column;
 	flex-grow: 1;
@@ -25,9 +26,9 @@
 }
 
 .card>img {
-	border-radius: 13px;
-	object-fit: contain;
-	width: 100%;
+	object-fit: cover;
+    width: 100%;
+    aspect-ratio: 1;
 }
 
 .card>.cardTextContainer {

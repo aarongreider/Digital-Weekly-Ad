@@ -1,22 +1,35 @@
-const points = [0, 500, 1000, 1500]
+//gsap.registerPlugin(ScrollTrigger);
 
-Draggable.create(".Wr", {
-      type: 'scrollTop',
-      //lockAxis: true,
-      bounds: ".Wr",
-      throwProps: true,
-      dragClickables: true,
-      autoScroll: 0,
-      edgeResistance: 0.75,
-      dragResistance: .2,
-      minDuration: .4,
-      maxDuration: .8,
-      snap: { y: points },
-      onThrowUpdate: function(){
-        let vy = 50 - (this.y / 40)
-        TweenMax.to(".Si", .6, {
-          backgroundPositionY: `${vy}%`,
-          '-webkit-background-position-y': `${vy}%`
-        })
-      }
-    })
+function handleAnimations() {
+    return new Promise((resolve, reject) => {
+        try {
+            /*console.log("gsaping")
+            ScrollTrigger.refresh();
+
+            ScrollTrigger.create({
+                trigger: ".scrollContainer",
+                start: "top top",
+                end: "bottom 150px",
+                markers: true,
+                pin: true
+            });
+             ScrollTrigger.create({
+                trigger: ".card",
+                start: "top top",
+                end: "bottom 50px",
+                pin: true
+            }); */
+            
+            let example = document.getElementById('listCardContainer')
+            new Sortable(example, {
+                animation: 300,
+                ghostClass: 'ghost'
+            });
+
+            resolve(true);
+        } catch (error) {
+            console.error("An error occurred:", error);
+            reject(error);
+        }
+    });
+}
