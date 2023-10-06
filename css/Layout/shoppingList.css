@@ -118,6 +118,10 @@
   box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
   transition: transform 100ms cubic-bezier(0.15, 0, 0.17, 1.02), box-shadow 100ms cubic-bezier(0.15, 0, 0.17, 1.02);
 }
+.scrollContainer #listCardContainer .listCard:hover {
+  transform: translate(-1px, -2.5px);
+  box-shadow: 2px 4px 10px 0px rgba(0, 0, 0, 0.36), 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
+}
 .scrollContainer #listCardContainer .listCard > img {
   border-radius: 13px;
   -o-object-fit: cover;
@@ -176,10 +180,6 @@
 }
 .scrollContainer #listCardContainer .listCard > .cardTextContainer .quantityControls .quantityButton {
   cursor: pointer;
-}
-.scrollContainer #listCardContainer .listCard:hover {
-  transform: translate(-1px, -2.5px);
-  box-shadow: 2px 4px 10px 0px rgba(0, 0, 0, 0.36), 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
 }
 .scrollContainer #listControls {
   display: flex;
@@ -291,4 +291,4 @@
   .scrollContainer #listControls #scrollPrint {
     display: none;
   }
-}/*# sourceMappingURL=shoppingListStyles.css.map */
+}/*# sourceMappingURL=shoppingList.css.map */

@@ -154,6 +154,11 @@ $soft-drop: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 
             transition: transform 100ms cubic-bezier(0.15, 0, 0.17, 1.02),
                 box-shadow 100ms cubic-bezier(0.15, 0, 0.17, 1.02);
 
+            &:hover {
+                transform: translate(-1px, -2.5px);
+                box-shadow: 2px 4px 10px 0px rgba(0, 0, 0, 0.36), 1px 1px 2px 0px rgba(0, 0, 0, 0.30);
+            }
+
             >img {
                 border-radius: 13px;
                 object-fit: cover;
@@ -221,11 +226,6 @@ $soft-drop: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 
                     }
                 }
             }
-        }
-
-        .listCard:hover {
-            transform: translate(-1px, -2.5px);
-            box-shadow: 2px 4px 10px 0px rgba(0, 0, 0, 0.36), 1px 1px 2px 0px rgba(0, 0, 0, 0.30);
         }
     }
 
@@ -309,46 +309,46 @@ $soft-drop: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 
     }
 }
 
-    /* css selectors for printing */
-    @media print {
-        body :not(.scrollContainer *):not(.scrollContainer) {
-            display: none !important;
-        }
+/* css selectors for printing */
+@media print {
+    body :not(.scrollContainer *):not(.scrollContainer) {
+        display: none !important;
+    }
 
-        .scrollContainer {
+    .scrollContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: relative;
+        overflow: visible;
+        background: white;
+        box-shadow: none;
+
+        #listCardContainer {
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: flex-start;
-            position: relative;
-            overflow: visible;
-            background: white;
-            box-shadow: none;
+            order: 2;
+            height: auto;
+            max-height: none;
+            width: 100vw;
 
-            #listCardContainer {
-                display: flex;
-                order: 2;
-                height: auto;
-                max-height: none;
-                width: 100vw;
+            .listCard {
+                background-color: white !important;
+                width: 90vw !important;
 
-                .listCard {
-                    background-color: white !important;
-                    width: 90vw !important;
-
-                    >.cardTextContainer .deleteButton {
-                        display: none;
-                    }
-                }
-            }
-
-            #listControls {
-                order: 1;
-                flex-direction: row;
-
-                #scrollPrint {
+                >.cardTextContainer .deleteButton {
                     display: none;
                 }
             }
         }
+
+        #listControls {
+            order: 1;
+            flex-direction: row;
+
+            #scrollPrint {
+                display: none;
+            }
+        }
     }
+}

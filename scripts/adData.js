@@ -23,26 +23,6 @@ function loadWeeklyAd() {
     });
 }
 
-
-
-function getCardFrag(title, price, save, img) {
-    const card = document.createElement('template');
-    let fragment = `
-            <div class="card">
-                <img
-                    src="${img}">
-                <div class="cardTextContainer">
-                    <h2>${title}</h2>
-                    <p>${price}</p>
-                    <p>Save ${save}</p>
-                </div>
-                <p class="add">+ Add to List</p>
-            </div>`;
-
-    card.innerHTML = fragment;
-    return card;
-}
-
 function jsonToCards(response) {
     let parent = document.createElement('div');
     parent.id = 'weeklyadContainer';
@@ -57,6 +37,8 @@ function jsonToCards(response) {
         let card = getCardFrag(item["Product Description"], item["Cost"], item["Save"], item["Image"])
         div.append(card.content);
     });
+    //response.data[1]["Cost"]
+    //response.data["10-02-23"][1]["Cost"]
 }
 
 function setAddButtonListeners(response) {
