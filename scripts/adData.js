@@ -1,6 +1,7 @@
 function loadWeeklyAd() {
     return new Promise((resolve, reject) => {
-        fetch('https://script.google.com/macros/s/AKfycbw-ZbsqEASuUT_pNWggkiHaeqUr20qI9xXfOT7g7WbvLZOuZpQMpF67_l4lMkxcmNRQaQ/exec')
+        //fetch('https://script.google.com/macros/s/AKfycbw-ZbsqEASuUT_pNWggkiHaeqUr20qI9xXfOT7g7WbvLZOuZpQMpF67_l4lMkxcmNRQaQ/exec') // old one
+        fetch('https://script.google.com/macros/s/AKfycbwo8bAdEp9koFVzqfPeh4Y7C4x4p-c-zHydPTxmtOuMhZCpRPQQ4kQQ2WtkQRAnaisa6w/exec')
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`Network response was not ok: ${response.status}`);
@@ -32,9 +33,9 @@ function jsonToCards(response) {
     div.className = 'cardContainer';
     parent.appendChild(div);
 
-    response.data.forEach(item => {
+    response.data[0]["10-02-23"].forEach(item => {
         //console.log(item["Product Description"])
-        let card = getCardFrag(item["Product Description"], item["Cost"], item["Save"], item["Image"])
+        let card = getCardFrag(item[lsProps.brand], item[lsProps.description], item[lsProps.price], item[lsProps.additional], item[lsProps.image])
         div.append(card.content);
     });
     //response.data[1]["Cost"]
