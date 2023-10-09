@@ -23,6 +23,7 @@
 .card > img {
   -o-object-fit: cover;
      object-fit: cover;
+  border-radius: 6px;
   width: 100%;
   aspect-ratio: 1;
 }

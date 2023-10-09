@@ -72,11 +72,11 @@ function alterLocalStorage(action, target, data = undefined, isAdding = false) {
             let quantity = parseInt(quantityNode.innerHTML);
 
             if (isAdding) {
-                console.log('add quantity')
+                //console.log('add quantity')
                 quantityNode.textContent = quantity + 1;
                 list[foundIndex].quantity = quantity + 1;
             } else {
-                console.log('subtract quantity')
+                //console.log('subtract quantity')
                 quantityNode.textContent = quantity - 1;
                 list[foundIndex].quantity = quantity - 1;
                 if (quantity - 1 <= 0) {
@@ -133,7 +133,7 @@ function setShoppingListListener() {
                 event.target === document.querySelector(".header") ||
                 event.target === document.querySelector(".header > h1") ||
                 event.target === document.querySelector(".header > img")) {
-                console.log('toggle shopping list')
+                //console.log('toggle shopping list')
                 document.querySelector(`.scrollContainer`).classList.toggle('showCards')
                 document.body.classList.toggle("noScroll");
             }

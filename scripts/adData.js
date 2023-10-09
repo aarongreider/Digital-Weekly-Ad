@@ -11,8 +11,12 @@ function loadWeeklyAd() {
             .then(response => {
                 // Process the JSON data here
                 response = response.data[0]["10-02-23"];
-                console.log(response);
-                jsonToCards(response);
+                let sections = groupByKey(lsProps.section, response)
+                let categories = groupByKey(lsProps.category, response)
+
+
+                jsonToCards(sections);
+                initializeFilters(sections, categories);
                 initializeLocalStorage();
                 setAddButtonListeners(response);
                 resolve(response);
@@ -25,25 +29,65 @@ function loadWeeklyAd() {
     });
 }
 
-function jsonToCards(response) {
-    getSections(response);
+function jsonToCards(groups /* , parent */) {
+
+    let weeklyAdContainer = document.getElementById('weeklyadContainer')
+    if (weeklyAdContainer) {
+        weeklyAdContainer.remove();
+    }
+
     let parent = document.createElement('div');
     parent.id = 'weeklyadContainer';
     document.body.appendChild(parent);
 
-    let div = document.createElement('div');
-    div.className = 'cardContainer';
-    parent.appendChild(div);
+    for (const group in groups) {
+        console.log(group)
+        let h1 = document.createElement('h1');
+        h1.className = 'sectionHeader';
+        h1.textContent = group.toLowerCase();
+        h1.style.textTransform = 'capitalize';
+        parent.appendChild(h1);
 
-    response.forEach(item => {
-        //console.log(item["Product Description"])
-        let card = getCardFrag(item[lsProps.brand], item[lsProps.description], item[lsProps.price], item[lsProps.additional], item[lsProps.image])
-        div.append(card.content);
-    });
+        let div = document.createElement('div');
+        div.className = 'cardContainer';
+        div.id = group;
+        parent.appendChild(div);
+
+        /* if (groups.length > 0) { */
+            groups[group].forEach(item => {
+                //console.log(item["Product Description"])
+                let card = getCardFrag(item[lsProps.brand], item[lsProps.description], item[lsProps.price], item[lsProps.additional], item[lsProps.image])
+                div.append(card.content);
+            })
+        /* } else {
+            console.log('eehelele')
+        } */
+    };
 }
 
-function getSections(response) {
+function groupByKey(key, response) {
     // take in the json response and return an object containing each section as an array of items in that section
+    // Assuming your data is in an array of objects
+    console.log(key)
+    // Initialize an empty object to store the grouped data
+    const groupedData = {};
+
+    // Loop through the data and group by the "SECTION" column
+    response.forEach(item => {
+
+        const group = item[`${key}`];
+
+        // If the section doesn't exist in the groupedData object, create it
+        if (!groupedData[group]) {
+            groupedData[group] = [];
+        }
+
+        // Add the item to the corresponding section
+        groupedData[group].push(item);
+    });
+
+    // Now, groupedData contains your data grouped by sections
+    return groupedData;
 
 }
 
@@ -64,5 +108,51 @@ function initializeLocalStorage() {
     //localStorage.clear();
     if (localStorage.getItem(listKey) === null) {
         localStorage.setItem(listKey, '[]');
+    }
+}
+
+
+
+/* FILTERING */
+/* FILTERING */
+/* FILTERING */
+
+function filterCards(key, group) {
+
+
+}
+
+
+function initializeFilters(sections, categories) {
+    let sectionDropdown = document.getElementById('sectionDropdown')
+    let categoryDropdown = document.getElementById('categoryDropdown')
+
+    sectionDropdown.addEventListener('change', () => {
+        //filterCards(sectionDropdown.value, )
+        console.log("section change " + sectionDropdown.value)
+        /* jsonToCards(sections[`${sectionDropdown.value}`]) */
+    })
+    categoryDropdown.addEventListener('change', () => {
+        //filterCards(sectionDropdown.value, )
+        console.log("category change " + categoryDropdown.value)
+        /* jsonToCards(sections[`${sectionDropdown.value}`]) */
+    })
+
+    for (const section in sections) {
+        //console.log(section)
+
+        const option = document.createElement('option');
+        option.value = section;
+        option.text = section;
+        sectionDropdown.appendChild(option);
+    }
+
+    for (const category in categories) {
+        //console.log(category)
+
+        const option = document.createElement('option');
+        option.value = category;
+        option.text = category;
+        categoryDropdown.appendChild(option);
     }
 }
