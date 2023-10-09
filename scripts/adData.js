@@ -40,6 +40,7 @@ function jsonToCards(groups /* , parent */) {
     parent.id = 'weeklyadContainer';
     document.body.appendChild(parent);
 
+    console.log(groups)
     for (const group in groups) {
         console.log(group)
         let h1 = document.createElement('h1');
@@ -117,26 +118,37 @@ function initializeLocalStorage() {
 /* FILTERING */
 /* FILTERING */
 
-function filterCards(key, group) {
-
-
-}
-
-
 function initializeFilters(sections, categories) {
     let sectionDropdown = document.getElementById('sectionDropdown')
     let categoryDropdown = document.getElementById('categoryDropdown')
+    let viewbyDropdown = document.getElementById('viewbyDropdown')
 
     sectionDropdown.addEventListener('change', () => {
-        //filterCards(sectionDropdown.value, )
         console.log("section change " + sectionDropdown.value)
-        /* jsonToCards(sections[`${sectionDropdown.value}`]) */
+        if (sectionDropdown.value == 'All'){
+            jsonToCards(sections)
+        } else {
+            jsonToCards({[`${sectionDropdown.value}`]: sections[`${sectionDropdown.value}`]})
+        }
     })
     categoryDropdown.addEventListener('change', () => {
-        //filterCards(sectionDropdown.value, )
         console.log("category change " + categoryDropdown.value)
-        /* jsonToCards(sections[`${sectionDropdown.value}`]) */
+        if (categoryDropdown.value == 'All'){
+            jsonToCards(categories)
+        } else {
+            jsonToCards({[`${categoryDropdown.value}`]: categories[`${categoryDropdown.value}`]})
+        }
     })
+
+   /*  viewbyDropdown.addEventListener('change', () => {
+        //filterCards(sectionDropdown.value, )
+        console.log("view by change " + viewbyDropdown.value)
+        if (viewbyDropdown.value == "sections") 
+            jsonToCards(sections)
+        else    
+            jsonToCards(categories)
+        
+    }) */
 
     for (const section in sections) {
         //console.log(section)
