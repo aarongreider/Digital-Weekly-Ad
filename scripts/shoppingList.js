@@ -26,8 +26,8 @@ function refreshShoppingList(key = 'shopping list') {
     container.innerHTML = '';
     let list = JSON.parse(localStorage.getItem(key));
     counter.textContent = `${list.length}` // refresh the list counter count
-    list.forEach(itemData => {
-        let card = getListCardFrag(itemData["Product Description"], itemData["Cost"], itemData["Save"], itemData["Image"], itemData["quantity"] ? itemData["quantity"] : 1)
+    list.forEach(item => {
+        let card = getListCardFrag(item[lsProps.description], item[lsProps.price], item[lsProps.save], item[lsProps.image], item["quantity"] ? item["quantity"] : 1)
         container.append(card.content);
     });
     updateTotal(list)
@@ -96,6 +96,7 @@ function alterLocalStorage(action, target, data = undefined, isAdding = false) {
 
 function getLocalStorageItemMatch(value, prop, key = listKey) {
     let list = JSON.parse(localStorage.getItem(key));
+    
 
     for (let i = 0; i < list.length; i++) {
         if (value.localeCompare(list[i][prop]) === 0) {
@@ -108,7 +109,7 @@ function getLocalStorageItemMatch(value, prop, key = listKey) {
 function updateTotal(list) {
     let total = 0;
     list.forEach(itemData => {
-        let price = parseFloat(`${itemData["Cost"]}`.replace('$', ''));
+        let price = parseFloat(`${itemData[lsProps.price]}`.replace('$', ''));
         let q = itemData["quantity"] ? itemData["quantity"] : 1;
         total += q * price;
     });

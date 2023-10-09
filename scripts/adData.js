@@ -10,6 +10,7 @@ function loadWeeklyAd() {
             })
             .then(response => {
                 // Process the JSON data here
+                response = response.data[0]["10-02-23"];
                 console.log(response);
                 jsonToCards(response);
                 initializeLocalStorage();
@@ -25,6 +26,7 @@ function loadWeeklyAd() {
 }
 
 function jsonToCards(response) {
+    getSections(response);
     let parent = document.createElement('div');
     parent.id = 'weeklyadContainer';
     document.body.appendChild(parent);
@@ -33,13 +35,16 @@ function jsonToCards(response) {
     div.className = 'cardContainer';
     parent.appendChild(div);
 
-    response.data[0]["10-02-23"].forEach(item => {
+    response.forEach(item => {
         //console.log(item["Product Description"])
         let card = getCardFrag(item[lsProps.brand], item[lsProps.description], item[lsProps.price], item[lsProps.additional], item[lsProps.image])
         div.append(card.content);
     });
-    //response.data[1]["Cost"]
-    //response.data["10-02-23"][1]["Cost"]
+}
+
+function getSections(response) {
+    // take in the json response and return an object containing each section as an array of items in that section
+
 }
 
 function setAddButtonListeners(response) {
@@ -49,8 +54,8 @@ function setAddButtonListeners(response) {
         console.log("adding event listener to class items .add")
         button.addEventListener('click', (event) => {
             console.log('add to list click')
-            //addToList(event.target, response.data[i]);
-            alterLocalStorage(actions.add, event.target, response.data[i]);
+            console.log(response[i])
+            alterLocalStorage(actions.add, event.target, response[i]);
         });
     });
 }

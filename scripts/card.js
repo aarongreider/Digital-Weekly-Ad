@@ -3,7 +3,7 @@ function getCardFrag(brand, title, price, save, img) {
     let fragment = `
             <div class="card">
                 <img
-                    src="${imgURL()}">
+                    src="${img}">
                 <div class="cardTextContainer">
                     <p>${brand}</p>
                     <h2>${title}</h2>
