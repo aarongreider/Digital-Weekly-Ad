@@ -65,13 +65,14 @@
         }
 
         loadWeeklyAd().then(result => {
-            console.log("cards loaded. loading shopping list");
+            const style = 'color: grey;'
+            console.log("%ccards loaded. loading shopping list",  style);
 
             loadShoppingList(result).then(result2 => {
-                console.log("shopping list loaded. loading animations")
+                console.log("%cshopping list loaded. loading animations",  style)
 
                 handleAnimations().then(result3 => {
-                    console.log("animations loaded")
+                    console.log("%canimations loaded",  style)
                 })
             })
         })

@@ -20,7 +20,7 @@ function refreshShoppingList(key = 'shopping list') {
     // scrap the current shopping list
     // iterate over localStorage object and reconstruct the shopping list widget
 
-    console.log('refreshing shopping list')
+    //console.log('refreshing shopping list')
     let counter = document.getElementById('listCounter');
     let container = document.getElementById('listCardContainer');
     container.innerHTML = '';
@@ -176,7 +176,7 @@ function appendShoppingList() {
     let parent = document.getElementById('weeklyadContainer')
     let div = document.createElement('div');
     div.className = 'listDropdown';
-    parent.insertBefore(div, parent.firstChild);
+    document.body.append(div)
 
     let shoppingList = getShoppingListFrag();
     div.append(shoppingList.content);
