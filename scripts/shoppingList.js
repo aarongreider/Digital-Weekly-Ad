@@ -191,12 +191,12 @@ function setUpCardContainer() {
             </div>
             <div id="listControls">
                 <span id="scrollPrint" class="material-symbols-outlined print">print</span>
-                <button id="totalButton"><p>Total:<span id="total">$0.00</span></p></button>
+                <p id="totalButton">Total:<span id="total">$0.00</span></p>
             </div>
         </div>`;
 
     container.innerHTML = fragment;
-    document.body.append(container.content)
+    document.body.prepend(container.content)
 }
 
 function getListCardFrag(title, price, save, img, quantity) {

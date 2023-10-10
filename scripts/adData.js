@@ -44,17 +44,18 @@ function jsonToCards(groups /* , parent */) {
     console.log(groups)
     for (const group in groups) {
         console.log("  creating group " + group)
-        let h1 = document.createElement('h1');
-        h1.className = 'sectionHeader';
-        h1.textContent = group.toLowerCase();
-        h1.style.textTransform = 'capitalize';
-        parent.appendChild(h1);
 
         let div = document.createElement('div');
         div.className = 'cardContainer';
         div.id = group;
         parent.appendChild(div);
 
+        let h1 = document.createElement('h1');
+        h1.className = 'sectionHeader';
+        h1.textContent = group.toLowerCase();
+        h1.style.textTransform = 'capitalize';
+        div.prepend(h1);
+        
         groups[group].forEach(item => {
             let card = getCardFrag(item[lsProps.brand], item[lsProps.description], item[lsProps.price], item[lsProps.additional], item[lsProps.image])
             div.append(card.content);

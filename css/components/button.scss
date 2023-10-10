@@ -25,12 +25,29 @@
 }
 
 #filterControls {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+
     label {
         display : none;
     }
 
     .filterButton {
         @include button();
+        @include buttonTypography();
         width: auto;
     }
+}
+
+#totalButton {
+    @include button();
+    @include buttonTypography();
+
+    margin: 0;
+    padding: 15px 10px;
+    height: auto;
+    color: black;
+    font-weight: 400;
+
 }

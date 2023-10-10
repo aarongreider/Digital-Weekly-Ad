@@ -1,3 +1,4 @@
+@import '../abstract/mixins';
 @import '../abstract/variables';
 
 * {
@@ -5,9 +6,18 @@
 }
 
 .sectionHeader {
-    padding: 22px 24px;
+    @include button();
+
+    width: auto;
+    margin: 20px 100% 0 0;
+    padding: 16px 38px;
+    border-radius: 80px;
+    text-align: center;
     position: sticky;
-    top: 0;
-    background: white;
+    top: 16px;
+    white-space: nowrap;
+    background: rgba(255,255,255,.5);
+    -webkit-backdrop-filter: blur(32px);
+    backdrop-filter: blur(32px);
     //background: linear-gradient(90deg, $offwhite 0%, rgba(255, 255, 255, 0) 100%);
 }

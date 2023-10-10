@@ -19,11 +19,15 @@ function handleAnimations() {
                 end: "bottom 50px",
                 pin: true
             }); */
-            
+            //Sortable.mount(new AutoScroll());
             let example = document.getElementById('listCardContainer')
             new Sortable(example, {
                 animation: 300,
-                ghostClass: 'ghost'
+                ghostClass: 'ghost',
+                delay: 100,
+                delayOnTouchOnly: true,
+                scroll: true,
+                bubbleScroll: true
             });
 
             resolve(true);

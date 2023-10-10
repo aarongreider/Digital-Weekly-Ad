@@ -1,0 +1,10 @@
+body {
+  padding: 16px;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+}/*# sourceMappingURL=general.css.map */
