@@ -20,12 +20,9 @@ id-element {
 	gap: 10px;
 	flex-grow: 1;
 
-	/* &:first-child :nth-child(4n + 1) ~ :nth-last-child(4) {
-		margin-bottom: 100px;
-	} */
-	&:hover > .menuItemContainer {
+	/* &:hover > .menuItemContainer {
 		display: flex;
-	}
+	} */
 
 	.menuItemContainer {
 		display: none;
@@ -39,6 +36,7 @@ id-element {
 			order: 1;
 			//margin: 0 0 10px 0;
 			width: auto;
+			min-width: 150px;
 
 			.cardTextContainer {
 				gap: 0;
@@ -51,4 +49,8 @@ id-element {
 			flex-grow: 20;
 		}
 	}
+}
+
+.flex {
+	display: flex !important;
 }

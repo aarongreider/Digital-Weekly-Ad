@@ -74,20 +74,21 @@
 	}
 	
 }
-
-.add {
+.buttonInline {
 	@include buttonInline();
 	position: absolute;
+	right: -6px;
+	z-index: 1;
+}
+
+.add {
 	top: -16px;
-	right: -12px;
 }
 
 .seeMenuButton {
 	@include buttonInline();
-	position: absolute;
-	top: 30px;
-	right: -12px;
-	padding: 1px;
+	top: 20px;
+	gap: 7px;
 }
 
 

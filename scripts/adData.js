@@ -127,6 +127,51 @@ function setAddButtonListeners(response) {
             button.style.padding = '1px'
         });
     });
+
+    setMenuItemListeners();
+}
+
+function setMenuItemListeners() {
+    Array.from(document.getElementsByClassName('seeMenuButton')).forEach(function (button) {
+        button.addEventListener('click', (event) => {
+            button.parentNode.parentNode.querySelector('.menuItemContainer').classList.toggle("flex");
+            setTimeout(() => {
+                if (checkViewportPercent(button, 0.8)) {
+                    /* const id = 'profilePhoto';
+                    const yOffset = -10;
+                    const y = button.getBoundingClientRect().top + window.scrollTop + yOffset;
+                    console.log(y)
+
+                    window.scrollTo({ top: y, behavior: 'smooth' }); */
+                    button.scrollIntoView({ behavior: 'smooth',  block: 'center'})
+                }
+            }, 200)
+        });
+
+    });
+}
+
+function checkViewportPercent(element, threshold) {
+    // Calculate the element's position relative to the viewport
+    const elementRect = element.getBoundingClientRect();
+
+    // Calculate the height of the viewport
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+    // Calculate the position of the element's bottom edge relative to the viewport
+    const elementBottom = elementRect.top + elementRect.height;
+
+    // Calculate the threshold for the bottom 20% of the viewport
+    const thresholdVP = viewportHeight * threshold;
+
+    // Check if the element's bottom edge is within the bottom 20% of the viewport
+    if (elementBottom >= thresholdVP) {
+        console.log('The element is in the bottom 20% of the viewport.');
+        return true;
+    } else {
+        console.log('The element is not in the bottom 20% of the viewport.');
+        return false;
+    }
 }
 
 function initializeLocalStorage() {

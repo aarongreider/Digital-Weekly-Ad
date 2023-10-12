@@ -56,7 +56,6 @@ function alterLocalStorage(action, target, data = undefined, isAdding = false) {
     // Get the src attribute value of the sibling img
     const idElement = parentCard.querySelector('id-element');
     const idAttr = idElement.getAttribute('data-id');
-    console.log(idAttr)
     let foundIndex = getLocalStorageItemMatch(idAttr, lsProps.id, listKey) // hypothetically no blocks should have duplicate images, so for now I'm using the img src as a unique key for comparing ad items
     let list = JSON.parse(localStorage.getItem(listKey))
 

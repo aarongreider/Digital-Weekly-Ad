@@ -13,10 +13,12 @@ function getCardFrag(brand, title, price, save, img, menu, id) {
                             <h2>${title}</h2>
                             <p>${price}</p>
                         </div>
-                        <p class="add">
+                        <p class="buttonInline add">
                             <span class="material-symbols-outlined">add_circle</span>Add to List
                         </p>
-                        <p class="seeMenuButton"><span class="material-symbols-outlined">read_more</span>See Related Items</p>
+                        <p class="buttonInline seeMenuButton">
+                            <span class="material-symbols-outlined">read_more</span>See Related Items
+                        </p>
                     </div>
                     <div class="menuItemContainer">
                         <div class="menuSpacer"></div>
@@ -32,7 +34,7 @@ function getCardFrag(brand, title, price, save, img, menu, id) {
                         <h2>${title}</h2>
                         <p>${price}</p>
                     </div>
-                    <p class="add">
+                    <p class="buttonInline add">
                         <span class="material-symbols-outlined">add_circle</span>Add to List
                     </p>
                 </div>`;
@@ -47,7 +49,7 @@ function getCardFrag(brand, title, price, save, img, menu, id) {
                         <h2>${title}</h2>
                         <p>${price}</p>
                     </div>
-                    <p class="add">
+                    <p class="buttonInline add">
                         <span class="material-symbols-outlined">add_circle</span>Add to List
                     </p>
                 </div>`;

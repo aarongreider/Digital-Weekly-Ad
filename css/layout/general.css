@@ -18,12 +18,9 @@ id-element {
   flex-direction: row;
   gap: 10px;
   flex-grow: 1;
-  /* &:first-child :nth-child(4n + 1) ~ :nth-last-child(4) {
-  	margin-bottom: 100px;
+  /* &:hover > .menuItemContainer {
+  	display: flex;
   } */
-}
-.menuContainer:hover > .menuItemContainer {
-  display: flex;
 }
 .menuContainer .menuItemContainer {
   display: none;
@@ -36,6 +33,7 @@ id-element {
 .menuContainer .menuItemContainer .menuItem {
   order: 1;
   width: auto;
+  min-width: 150px;
 }
 .menuContainer .menuItemContainer .menuItem .cardTextContainer {
   gap: 0;
@@ -44,4 +42,8 @@ id-element {
 .menuContainer .menuItemContainer .menuSpacer {
   order: 2;
   flex-grow: 20;
+}
+
+.flex {
+  display: flex !important;
 }/*# sourceMappingURL=general.css.map */

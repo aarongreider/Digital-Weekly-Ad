@@ -17,7 +17,7 @@
   width: auto;
   margin: 20px 100% 0 0;
   padding: 16px 38px;
-  z-index: 1;
+  z-index: 2;
   border-radius: 80px;
   text-align: center;
   position: sticky;
@@ -86,7 +86,7 @@
   opacity: 0.5;
 }
 
-.add {
+.buttonInline {
   /* layout */
   display: flex;
   justify-content: center;
@@ -108,8 +108,12 @@
   font-style: normal;
   cursor: pointer;
   position: absolute;
+  right: -6px;
+  z-index: 1;
+}
+
+.add {
   top: -16px;
-  right: -12px;
 }
 
 .seeMenuButton {
@@ -133,10 +137,8 @@
   line-height: normal;
   font-style: normal;
   cursor: pointer;
-  position: absolute;
-  top: 30px;
-  right: -12px;
-  padding: 1px;
+  top: 20px;
+  gap: 7px;
 }
 
 .listCard {
@@ -524,12 +526,9 @@ id-element {
   flex-direction: row;
   gap: 10px;
   flex-grow: 1;
-  /* &:first-child :nth-child(4n + 1) ~ :nth-last-child(4) {
-  	margin-bottom: 100px;
+  /* &:hover > .menuItemContainer {
+  	display: flex;
   } */
-}
-.menuContainer:hover > .menuItemContainer {
-  display: flex;
 }
 .menuContainer .menuItemContainer {
   display: none;
@@ -542,6 +541,7 @@ id-element {
 .menuContainer .menuItemContainer .menuItem {
   order: 1;
   width: auto;
+  min-width: 150px;
 }
 .menuContainer .menuItemContainer .menuItem .cardTextContainer {
   gap: 0;
@@ -550,4 +550,8 @@ id-element {
 .menuContainer .menuItemContainer .menuSpacer {
   order: 2;
   flex-grow: 20;
+}
+
+.flex {
+  display: flex !important;
 }/*# sourceMappingURL=main.css.map */
