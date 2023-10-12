@@ -61,7 +61,12 @@ function jsonToCards(groups /* , parent */) {
 
         groups[group].forEach(item => {
             let card = getCardFrag(item[lsProps.brand], item[lsProps.description], item[lsProps.price], item[lsProps.additional], item[lsProps.image], item[lsProps.menu], item[lsProps.id])
-            div.append(card.content);
+            if (item[lsProps.menu] == 'menu') {
+                const menuContainers = div.getElementsByClassName('menuItemContainer');
+                menuContainers[menuContainers.length - 1].append(card.content);
+            } else {
+                div.append(card.content);
+            }
         })
     };
 }

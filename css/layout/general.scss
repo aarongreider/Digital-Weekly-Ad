@@ -1,5 +1,9 @@
 body {
-    padding: 16px;
+	padding: 16px;
+}
+
+id-element {
+	display: none;
 }
 
 .cardContainer {
@@ -8,4 +12,43 @@ body {
 	flex-wrap: wrap;
 	gap: 16px;
 	//padding: 16px;
+}
+
+.menuContainer {
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+	flex-grow: 1;
+
+	/* &:first-child :nth-child(4n + 1) ~ :nth-last-child(4) {
+		margin-bottom: 100px;
+	} */
+	&:hover > .menuItemContainer {
+		display: flex;
+	}
+
+	.menuItemContainer {
+		display: none;
+		gap: 10px;
+		flex-direction: column;
+		max-height: 420px;
+		flex-wrap: wrap;
+		flex-grow: 1;
+
+		.menuItem {
+			order: 1;
+			//margin: 0 0 10px 0;
+			width: auto;
+
+			.cardTextContainer {
+				gap: 0;
+				padding: 0;
+			}
+		}
+
+		.menuSpacer {
+			order: 2;
+			flex-grow: 20;
+		}
+	}
 }

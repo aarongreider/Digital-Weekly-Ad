@@ -15,13 +15,13 @@
         <label for="sectionDropdown">Filter Section</label>
         <select id="sectionDropdown" class="filterButton">
             <option value="All" selected="selected">All Sections</option>
-            
+
         </select>
         <label for="categoryDropdown">Filter Category</label>
         <select id="categoryDropdown" class="filterButton">
             <option value="All" selected="selected">All Categories</option>
         </select>
-       <!--  <label for="viewbyDropdown">View By</label>
+        <!--  <label for="viewbyDropdown">View By</label>
         <select id="viewbyDropdown" class="filterButton">
             <option value="sections" selected="selected">View by Featured Sections</option>
             <option value="categories">View by Product Categories</option>
@@ -33,7 +33,10 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"
         integrity="sha512-Eezs+g9Lq4TCCq0wae01s9PuNWzHYoCMkE97e2qdkYthpI0pzC3UGB03lgEHn2XM85hDOUF6qgqqszs+iXU4UA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
-        <script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
+    <script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tippy.js/2.5.4/tippy.all.min.js"
+        integrity="sha512-9LKXH8DIeFSdiDIWQSOJNZuwLynJNm4x/1eBRpPfRJsEXZWJL+aoH+JNDglF3DcCoQYVBHqXo8sVHOLveoaN0A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="../scripts/adData.js"></script>
     <script src="../scripts/shoppingList.js"></script>
     <script src="../scripts/animations.js"></script>
@@ -70,13 +73,13 @@
 
         loadWeeklyAd().then(result => {
             const style = 'color: grey;'
-            console.log("%ccards loaded. loading shopping list",  style);
+            console.log("%ccards loaded. loading shopping list", style);
 
             loadShoppingList(result).then(result2 => {
-                console.log("%cshopping list loaded. loading animations",  style)
+                console.log("%cshopping list loaded. loading animations", style)
 
                 handleAnimations().then(result3 => {
-                    console.log("%canimations loaded",  style)
+                    console.log("%canimations loaded", style)
                 })
             })
         })

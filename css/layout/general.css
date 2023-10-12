@@ -2,9 +2,46 @@ body {
   padding: 16px;
 }
 
+id-element {
+  display: none;
+}
+
 .cardContainer {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 16px;
+}
+
+.menuContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-grow: 1;
+  /* &:first-child :nth-child(4n + 1) ~ :nth-last-child(4) {
+  	margin-bottom: 100px;
+  } */
+}
+.menuContainer:hover > .menuItemContainer {
+  display: flex;
+}
+.menuContainer .menuItemContainer {
+  display: none;
+  gap: 10px;
+  flex-direction: column;
+  max-height: 420px;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+.menuContainer .menuItemContainer .menuItem {
+  order: 1;
+  width: auto;
+}
+.menuContainer .menuItemContainer .menuItem .cardTextContainer {
+  gap: 0;
+  padding: 0;
+}
+.menuContainer .menuItemContainer .menuSpacer {
+  order: 2;
+  flex-grow: 20;
 }/*# sourceMappingURL=general.css.map */

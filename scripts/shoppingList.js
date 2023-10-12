@@ -27,7 +27,7 @@ function refreshShoppingList(key = 'shopping list') {
     let list = JSON.parse(localStorage.getItem(key));
     counter.textContent = `${list.length}` // refresh the list counter count
     list.forEach(item => {
-        let card = getListCardFrag(item[lsProps.description], item[lsProps.price], item[lsProps.save], item[lsProps.image], item["quantity"] ? item["quantity"] : 1)
+        let card = getListCardFrag(item[lsProps.description], item[lsProps.price], item[lsProps.save], item[lsProps.image], item["quantity"] ? item["quantity"] : 1, item[lsProps.menu], item[lsProps.id])
         container.append(card.content);
     });
     updateTotal(list)
@@ -54,15 +54,10 @@ function alterLocalStorage(action, target, data = undefined, isAdding = false) {
     }
 
     // Get the src attribute value of the sibling img
-    let searchEl, searchVal;
-    searchEl = parentCard.querySelector('img');
-    if (searchEl) {
-        searchVal = searchEl.getAttribute('src');
-    } else {
-        searchEl = parentCard.querySelector('h2');
-        searchVal = searchEl.textContent;
-    }
-    let foundIndex = getLocalStorageItemMatch(searchVal, lsProps.image, listKey) // hypothetically no blocks should have duplicate images, so for now I'm using the img src as a unique key for comparing ad items
+    const idElement = parentCard.querySelector('id-element');
+    const idAttr = idElement.getAttribute('data-id');
+    console.log(idAttr)
+    let foundIndex = getLocalStorageItemMatch(idAttr, lsProps.id, listKey) // hypothetically no blocks should have duplicate images, so for now I'm using the img src as a unique key for comparing ad items
     let list = JSON.parse(localStorage.getItem(listKey))
 
     switch (action) {
@@ -112,7 +107,7 @@ function alterLocalStorage(action, target, data = undefined, isAdding = false) {
 
 function getLocalStorageItemMatch(value, prop, key = listKey) {
     let list = JSON.parse(localStorage.getItem(key));
-
+    
 
     for (let i = 0; i < list.length; i++) {
         if (value.localeCompare(list[i][prop]) === 0) {
@@ -213,29 +208,6 @@ function setUpCardContainer() {
 
     container.innerHTML = fragment;
     document.body.prepend(container.content)
-}
-
-function getListCardFrag(title, price, save, img, quantity) {
-    const listCard = document.createElement('template');
-    let fragment = `
-            <div><div class="listCard">
-				<img src="${img}">
-				<div class="cardTextContainer">
-					<h2>${title}</h2>
-					<p>${price}</p>
-					<p>Save ${save}</p>
-                    <span class="material-symbols-outlined button deleteButton ">delete</span>
-                    <div class="quantityControls">
-                        <span class="material-symbols-outlined quantityButton quantitySubtract">do_not_disturb_on</span>
-                        <span class="quantity">${quantity}</span>
-                        <span class="material-symbols-outlined quantityButton quantityAdd"> add_circle </span>
-                    </div>
-				</div>
-                <span class="material-symbols-outlined dragIcon">drag_indicator</span>
-			<div><div>`;
-
-    listCard.innerHTML = fragment;
-    return listCard;
 }
 
 function getShoppingListFrag() {

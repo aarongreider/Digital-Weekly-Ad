@@ -33,6 +33,7 @@
   justify-content: space-between;
   gap: 14px;
   width: auto;
+  position: relative;
 }
 .listDropdown .toolBar .header h1 {
   /* color: $dark-green; */
