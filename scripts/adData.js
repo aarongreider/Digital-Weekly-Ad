@@ -28,7 +28,10 @@ function loadWeeklyAd() {
             });
     });
 }
+function checkIfAdded(item) {
 
+
+}
 function jsonToCards(groups /* , parent */) {
 
     let weeklyAdContainer = document.getElementById('weeklyadContainer')
@@ -40,10 +43,10 @@ function jsonToCards(groups /* , parent */) {
     parent.id = 'weeklyadContainer';
     document.body.appendChild(parent);
 
-    console.log("json => cards groups:")
+    //console.log("json => cards groups:")
     console.log(groups)
     for (const group in groups) {
-        console.log("  creating group " + group)
+        //console.log("  creating group " + group)
 
         let div = document.createElement('div');
         div.className = 'cardContainer';
@@ -55,9 +58,9 @@ function jsonToCards(groups /* , parent */) {
         h1.textContent = group.toLowerCase();
         h1.style.textTransform = 'capitalize';
         div.prepend(h1);
-        
+
         groups[group].forEach(item => {
-            let card = getCardFrag(item[lsProps.brand], item[lsProps.description], item[lsProps.price], item[lsProps.additional], item[lsProps.image])
+            let card = getCardFrag(item[lsProps.brand], item[lsProps.description], item[lsProps.price], item[lsProps.additional], item[lsProps.image], item[lsProps.menu], item[lsProps.id])
             div.append(card.content);
         })
     };
@@ -91,8 +94,8 @@ function groupByKey(key, response) {
 
 function setAddButtonListeners(response) {
     // response should be an array of objects, not an object with an array of objects. 
-    console.log("add button parameters: ");
-    console.log(response);
+    //console.log("add button parameters: ");
+    //console.log(response);
 
     // flatten the response first so we dont have to mess with getting keys
     const flattenedArray = [];
@@ -106,10 +109,17 @@ function setAddButtonListeners(response) {
     Array.from(document.getElementsByClassName('add')).forEach(function (button, i) {
         /*  console.log(".add listener")
          console.log(response[i]) */
+        // check if button is already added to list
+        if (alterLocalStorage(actions.check, button)) {
+            button.innerHTML = `<span class="material-symbols-outlined">check_circle</span>`;
+            button.style.padding = '1px'
+        }
         button.addEventListener('click', (event) => {
             console.log('add to list click')
             console.log(flattenedArray[i])
             alterLocalStorage(actions.add, event.target, flattenedArray[i]);
+            button.innerHTML = `<span class="material-symbols-outlined">check_circle</span>`;
+            button.style.padding = '1px'
         });
     });
 }

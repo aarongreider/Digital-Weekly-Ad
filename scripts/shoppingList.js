@@ -45,15 +45,24 @@ function alterLocalStorage(action, target, data = undefined, isAdding = false) {
         case 'update':
             parentCard = target.closest('.listCard');
             break;
+        case 'check':
+            parentCard = target.closest('.card');
+            break;
         default:
             console.log("Something's not right");
             return;
     }
 
     // Get the src attribute value of the sibling img
-    const imgElement = parentCard.querySelector('img');
-    const imgSrc = imgElement.getAttribute('src');
-    let foundIndex = getLocalStorageItemMatch(imgSrc, lsProps.image, listKey) // hypothetically no blocks should have duplicate images, so for now I'm using the img src as a unique key for comparing ad items
+    let searchEl, searchVal;
+    searchEl = parentCard.querySelector('img');
+    if (searchEl) {
+        searchVal = searchEl.getAttribute('src');
+    } else {
+        searchEl = parentCard.querySelector('h2');
+        searchVal = searchEl.textContent;
+    }
+    let foundIndex = getLocalStorageItemMatch(searchVal, lsProps.image, listKey) // hypothetically no blocks should have duplicate images, so for now I'm using the img src as a unique key for comparing ad items
     let list = JSON.parse(localStorage.getItem(listKey))
 
     switch (action) {
@@ -84,6 +93,13 @@ function alterLocalStorage(action, target, data = undefined, isAdding = false) {
                 }
             }
             break;
+        case 'check':
+            if (foundIndex !== undefined) {
+                return foundIndex;
+            } else {
+                return false;
+            }
+            break;
         default:
             console.log("Something's not right");
             return;
@@ -96,7 +112,7 @@ function alterLocalStorage(action, target, data = undefined, isAdding = false) {
 
 function getLocalStorageItemMatch(value, prop, key = listKey) {
     let list = JSON.parse(localStorage.getItem(key));
-    
+
 
     for (let i = 0; i < list.length; i++) {
         if (value.localeCompare(list[i][prop]) === 0) {
@@ -215,7 +231,8 @@ function getListCardFrag(title, price, save, img, quantity) {
                         <span class="material-symbols-outlined quantityButton quantityAdd"> add_circle </span>
                     </div>
 				</div>
-			<div></div>`;
+                <span class="material-symbols-outlined dragIcon">drag_indicator</span>
+			<div><div>`;
 
     listCard.innerHTML = fragment;
     return listCard;

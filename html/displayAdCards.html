@@ -51,18 +51,21 @@
             price: "PRICE",
             size: "SIZE",
             unit: "UNIT",
+            menu: "MENU",
             priceDisplay: "DISPLAY PRICE",
             save: "SAVE",
             additional: "ADDITIONAL TEXT",
             instructions: "INSTRUCTIONS",
-            image: "IMG URL"
+            image: "IMG URL",
+            id: "ID"
         }
         let listKey = 'shopping list';
 
         let actions = {
             add: "add",
             remove: "remove",
-            update: "update"
+            update: "update",
+            check: "check"
         }
 
         loadWeeklyAd().then(result => {

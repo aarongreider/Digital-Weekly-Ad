@@ -26,7 +26,7 @@
 
 #filterControls {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     flex-direction: row;
 
     label {
@@ -48,6 +48,12 @@
     padding: 15px 10px;
     height: auto;
     color: black;
-    font-weight: 400;
+    font-weight: 600;
 
+}
+
+.dragIcon {
+    color: $warm-grey;
+    padding: 34px 0;
+    cursor: grab;
 }

@@ -22,7 +22,7 @@
 
 #filterControls {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   flex-direction: row;
 }
 #filterControls label {
@@ -73,5 +73,11 @@
   padding: 15px 10px;
   height: auto;
   color: black;
-  font-weight: 400;
+  font-weight: 600;
+}
+
+.dragIcon {
+  color: #C6BCB3;
+  padding: 34px 0;
+  cursor: grab;
 }/*# sourceMappingURL=button.css.map */

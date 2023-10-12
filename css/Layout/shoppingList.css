@@ -64,6 +64,24 @@
   font-weight: 300;
 }
 
+/* .shoppingListLayout {
+
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    //overflow: auto;
+    padding: 14px;
+    z-index: 1001;
+    background: rgba(0, 0, 0, 0.35);
+    box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+} */
 .scrollContainer {
   /* layout */
   display: none;
@@ -95,7 +113,7 @@
   position: relative;
 }
 .scrollContainer #listCardContainer > :last-child {
-  padding-bottom: 300px;
+  margin-bottom: 300px;
 }
 .scrollContainer #listControls {
   display: flex;

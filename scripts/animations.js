@@ -1,33 +1,33 @@
-//gsap.registerPlugin(ScrollTrigger);
-
 function handleAnimations() {
     return new Promise((resolve, reject) => {
         try {
-            /*console.log("gsaping")
-            ScrollTrigger.refresh();
-
-            ScrollTrigger.create({
-                trigger: ".scrollContainer",
-                start: "top top",
-                end: "bottom 150px",
-                markers: true,
-                pin: true
-            });
-             ScrollTrigger.create({
-                trigger: ".card",
-                start: "top top",
-                end: "bottom 50px",
-                pin: true
-            }); */
             //Sortable.mount(new AutoScroll());
-            let example = document.getElementById('listCardContainer')
-            new Sortable(example, {
+            let listCardContainer = document.getElementById('listCardContainer')
+            let scrollContainer = document.getElementsByClassName('scrollContainer')[0]
+            
+            new Sortable(listCardContainer, {
                 animation: 300,
                 ghostClass: 'ghost',
                 delay: 100,
                 delayOnTouchOnly: true,
-                scroll: true,
-                bubbleScroll: true
+                handle: '.dragIcon',
+                /* forceFallback: true, */
+                scroll: false,
+                //scrollSensitivity: 30,
+                //bubbleScroll: false,
+                /* scrollFn: function (offsetX, offsetY, originalEvent, touchEvt, hoverTargetEl) {
+                    if (touchEvt.srcElement.classList.contains('listCard')) {
+                        scrollContainer.scrollTop += offsetY*10
+                        touchEvt.srcElement
+                        //console.log(offsetY)
+                        //.log(originalEvent.srcElement.outerHTML)
+                        //console.log(hoverTargetEl)
+                        //console.log(touchEvt.srcElement)
+                    }
+
+
+                }, */
+                
             });
 
             resolve(true);

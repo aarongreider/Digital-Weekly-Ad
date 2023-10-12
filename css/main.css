@@ -17,6 +17,7 @@
   width: auto;
   margin: 20px 100% 0 0;
   padding: 16px 38px;
+  z-index: 1;
   border-radius: 80px;
   text-align: center;
   position: sticky;
@@ -29,6 +30,7 @@
 
 .card {
   display: flex;
+  position: relative;
   width: 200px;
   max-width: 300px;
   padding: 8px 9px;
@@ -84,17 +86,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 30px;
-  padding: 0px 10px;
-  margin: 6px;
+  gap: 3px;
+  padding: 0px 8px 0 1px;
+  position: absolute;
+  top: -16px;
+  right: -4px;
   /* style */
-  border-radius: 12px;
+  border-radius: 100px;
   border: 3px solid #C6BCB3;
   background: #EDEAE7;
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25), 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
   /* typography */
   font-family: sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 800;
   text-transform: uppercase;
   color: #888079;
@@ -113,7 +117,6 @@
   padding: 8px 9px;
   gap: 10px;
   /* style */
-  cursor: grab;
   border-radius: 10px;
   background: #EDEAE7;
   /* Soft Drop */
@@ -138,6 +141,7 @@
   align-items: flex-start;
   justify-content: center;
   gap: 6px;
+  flex-grow: 1;
 }
 .listCard > .cardTextContainer > h2 {
   color: #0C5900;
@@ -208,7 +212,7 @@
 
 #filterControls {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   flex-direction: row;
 }
 #filterControls label {
@@ -259,7 +263,13 @@
   padding: 15px 10px;
   height: auto;
   color: black;
-  font-weight: 400;
+  font-weight: 600;
+}
+
+.dragIcon {
+  color: #C6BCB3;
+  padding: 34px 0;
+  cursor: grab;
 }
 
 .listDropdown {
@@ -328,6 +338,24 @@
   font-weight: 300;
 }
 
+/* .shoppingListLayout {
+
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    //overflow: auto;
+    padding: 14px;
+    z-index: 1001;
+    background: rgba(0, 0, 0, 0.35);
+    box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+} */
 .scrollContainer {
   /* layout */
   display: none;
@@ -359,7 +387,7 @@
   position: relative;
 }
 .scrollContainer #listCardContainer > :last-child {
-  padding-bottom: 300px;
+  margin-bottom: 300px;
 }
 .scrollContainer #listControls {
   display: flex;
