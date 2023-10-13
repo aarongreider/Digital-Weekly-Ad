@@ -1,8 +1,528 @@
-* {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-}
+#ad {
+  /* .shoppingListLayout {
 
-.sectionHeader {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      //overflow: auto;
+      padding: 14px;
+      z-index: 1001;
+      background: rgba(0, 0, 0, 0.35);
+      box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
+      -webkit-backdrop-filter: blur(2px);
+      backdrop-filter: blur(2px);
+  } */
+  /* css selectors for printing */
+  /* * {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  } */
+}
+#ad .card {
+  display: flex;
+  position: relative;
+  width: 200px;
+  max-width: 300px;
+  padding: 8px 9px;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 10px;
+  background: var(--offwhite, #EDEAE7);
+  /* Soft Drop */
+  box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
+}
+#ad .card > img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 6px;
+  width: 100%;
+  aspect-ratio: 1;
+}
+#ad .card > .cardTextContainer {
+  display: flex;
+  padding: 7px;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  gap: 6px;
+}
+#ad .card > .cardTextContainer > h2 {
+  color: var(--dark-green, #0C5900);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 126.6%;
+  /* 25.32px */
+  letter-spacing: -0.8px;
+  margin: 0;
+}
+#ad .card > .cardTextContainer > p {
+  color: var(--dark-green, #0C5900);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120.6%;
+  /* 19.296px */
+  letter-spacing: -0.4px;
+  margin: 0;
+}
+#ad .menuItem:hover > .add {
+  opacity: 1;
+}
+#ad .menuItem .add {
+  opacity: 0.5;
+}
+#ad .listCard {
+  /* layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  height: auto;
+  padding: 8px 9px;
+  gap: 10px;
+  /* style */
+  border-radius: 10px;
+  background: #EDEAE7;
+  /* Soft Drop */
+  box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
+  transition: transform 100ms cubic-bezier(0.15, 0, 0.17, 1.02), box-shadow 100ms cubic-bezier(0.15, 0, 0.17, 1.02);
+}
+#ad .listCard:hover {
+  transform: translate(-1px, -2.5px);
+  box-shadow: 2px 4px 10px 0px rgba(0, 0, 0, 0.36), 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
+}
+#ad .listCard > img {
+  border-radius: 13px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 130px;
+  height: 100px;
+}
+#ad .listCard > .cardTextContainer {
+  display: flex;
+  padding: 7px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 6px;
+  flex-grow: 1;
+}
+#ad .listCard > .cardTextContainer > h2 {
+  color: #0C5900;
+  font-family: "SF Pro Display", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 126.6%;
+  /* 25.32px */
+  letter-spacing: -0.8px;
+  margin: 0;
+}
+#ad .listCard > .cardTextContainer > p {
+  color: #0C5900;
+  font-family: "SF Pro Display", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120.6%;
+  /* 19.296px */
+  letter-spacing: -0.4px;
+  margin: 0;
+}
+#ad .listCard > .cardTextContainer .deleteButton {
+  position: absolute;
+  top: -8px;
+  left: -16px;
+  color: darkred;
+  /* height: 40px; */
+  padding: 5px;
+}
+#ad .listCard > .cardTextContainer .quantityControls {
+  /* layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  /* typography */
+  font-family: "SF Pro Display", sans-serif;
+  font-weight: 500;
+  color: #0C5900;
+}
+#ad .listCard > .cardTextContainer .quantityControls .quantityButton {
+  cursor: pointer;
+}
+#ad .button {
+  /* style */
+  border-radius: 200px;
+  border: 3px solid #C6BCB3;
+  background: #EDEAE7;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25), 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+#ad .print {
+  padding: 14px;
+  z-index: 1001;
+  border-radius: 12px;
+  border: 3px solid rgba(0, 0, 0, 0.25);
+  background: rgba(237, 234, 231, 0.65);
+  cursor: pointer;
+  box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
+  -webkit-backdrop-filter: blur(32px);
+  backdrop-filter: blur(32px);
+  color: rgba(0, 0, 0, 0.75);
+}
+#ad #filterControls {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+#ad #filterControls label {
+  display: none;
+}
+#ad #filterControls .filterButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  padding: 0px 10px;
+  margin: 6px;
+  border-radius: 12px;
+  border: 3px solid #C6BCB3;
+  background: #EDEAE7;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25), 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #888079;
+  line-height: normal;
+  font-style: normal;
+  width: auto;
+}
+#ad #totalButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  padding: 0px 10px;
+  margin: 6px;
+  border-radius: 12px;
+  border: 3px solid #C6BCB3;
+  background: #EDEAE7;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25), 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #888079;
+  line-height: normal;
+  font-style: normal;
+  margin: 0;
+  padding: 15px 10px;
+  height: auto;
+  color: black;
+  font-weight: 600;
+}
+#ad .dragIcon {
+  color: #C6BCB3;
+  padding: 34px 0;
+  cursor: grab;
+}
+#ad .buttonInline {
+  /* layout */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  padding: 0px 8px 0 1px;
+  margin: 0;
+  /* style */
+  border-radius: 100px;
+  border: 3px solid #C6BCB3;
+  background: #EDEAE7;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25), 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+  /* typography */
+  font-family: sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #888079;
+  line-height: normal;
+  font-style: normal;
+  cursor: pointer;
+  position: absolute;
+  right: -6px;
+  z-index: 1;
+}
+#ad .add {
+  top: -4px;
+}
+#ad .lower {
+  top: 30px;
+}
+#ad .seeMenuButton {
+  /* layout */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  padding: 0px 8px 0 1px;
+  margin: 0;
+  /* style */
+  border-radius: 100px;
+  border: 3px solid #C6BCB3;
+  background: #EDEAE7;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25), 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+  /* typography */
+  font-family: sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #888079;
+  line-height: normal;
+  font-style: normal;
+  cursor: pointer;
+  top: -4px;
+  gap: 7px;
+}
+#ad .listDropdown {
+  /* layout */
+  position: fixed;
+  width: auto;
+  bottom: 36px;
+  left: 36px;
+  z-index: 10;
+}
+#ad .listDropdown .toolBar {
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+}
+#ad .listDropdown .toolBar * {
+  color: rgba(0, 0, 0, 0.75);
+}
+#ad .listDropdown .toolBar > * {
+  padding: 14px;
+  z-index: 1001;
+  /* style */
+  border-radius: 12px;
+  border: 3px solid rgba(0, 0, 0, 0.25);
+  background: rgba(237, 234, 231, 0.65);
+  cursor: pointer;
+  /* effects */
+  box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
+  -webkit-backdrop-filter: blur(32px);
+          backdrop-filter: blur(32px);
+}
+#ad .listDropdown .toolBar .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 14px;
+  width: auto;
+  position: relative;
+}
+#ad .listDropdown .toolBar .header h1 {
+  /* color: $dark-green; */
+  font-family: "SF Pro Display", sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 126.6%;
+  white-space: nowrap;
+  /* 25.32px */
+  letter-spacing: -0.8px;
+  margin: 0;
+}
+#ad .listDropdown .toolBar .header #listCounter {
+  position: absolute;
+  top: -13px;
+  right: -12px;
+  height: 24px;
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* style */
+  background: rgb(68, 117, 82);
+  /* typography */
+  font-size: 14px;
+  color: #EDEAE7 !important;
+  font-family: "SF Pro Display", sans-serif;
+  font-weight: 300;
+}
+#ad .scrollContainer {
+  /* layout */
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 12px;
+  position: fixed;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  padding: 14px;
+  z-index: 1001;
+  /* style */
+  background: rgba(0, 0, 0, 0.35);
+  /* effects */
+  box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+}
+#ad .scrollContainer #listCardContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 450px;
+  overflow: visible;
+  position: relative;
+}
+#ad .scrollContainer #listCardContainer > :last-child {
+  margin-bottom: 300px;
+}
+#ad .scrollContainer #listControls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 11px;
+  position: sticky;
+  top: 0;
+}
+#ad .scrollContainer #listControls #scrollPrint {
+  align-items: center;
+  justify-content: center;
+  background: #EDEAE7;
+}
+#ad .showCards {
+  display: flex !important;
+}
+#ad .noScroll {
+  overflow: hidden;
+}
+#ad .ghost {
+  opacity: 0.5;
+}
+@media only screen and (max-width: 600px) {
+  #ad .card {
+    width: 140px;
+  }
+  #ad .scrollContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  #ad .scrollContainer #listCardContainer {
+    order: 2;
+    width: 92vw;
+  }
+  #ad .scrollContainer #listControls {
+    order: 1;
+    flex-direction: row;
+  }
+}
+@media print {
+  #ad body :not(.scrollContainer *):not(.scrollContainer) {
+    display: none !important;
+  }
+  #ad .scrollContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: relative;
+    overflow: visible;
+    background: white;
+    box-shadow: none;
+  }
+  #ad .scrollContainer #listCardContainer {
+    display: flex;
+    order: 2;
+    height: auto;
+    max-height: none;
+    width: 100vw;
+  }
+  #ad .scrollContainer #listCardContainer .listCard {
+    background-color: white !important;
+    width: 90vw !important;
+  }
+  #ad .scrollContainer #listCardContainer .listCard > .cardTextContainer .deleteButton {
+    display: none;
+  }
+  #ad .scrollContainer #listControls {
+    order: 1;
+    flex-direction: row;
+  }
+  #ad .scrollContainer #listControls #scrollPrint {
+    display: none;
+  }
+}
+#ad #ad {
+  padding: 16px;
+}
+#ad id-element {
+  display: none;
+}
+#ad #weeklyadContainer {
+  width: 95vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#ad .cardContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+#ad .menuContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-grow: 1;
+  /* &:hover > .menuItemContainer {
+  	display: flex;
+  } */
+}
+#ad .menuContainer .menuItemContainer {
+  display: none;
+  gap: 10px;
+  flex-direction: column;
+  max-height: 420px;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+#ad .menuContainer .menuItemContainer .menuItem {
+  order: 1;
+  width: auto;
+  min-width: 150px;
+}
+#ad .menuContainer .menuItemContainer .menuItem .cardTextContainer {
+  gap: 0;
+  padding: 0;
+}
+#ad .menuContainer .menuItemContainer .menuSpacer {
+  order: 2;
+  flex-grow: 20;
+}
+#ad .flex {
+  display: flex !important;
+}
+#ad .sectionHeader {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,543 +548,9 @@
   -webkit-backdrop-filter: blur(32px);
   backdrop-filter: blur(32px);
 }
-
-.card {
-  display: flex;
-  position: relative;
-  width: 200px;
-  max-width: 300px;
-  padding: 8px 9px;
-  flex-direction: column;
-  flex-grow: 1;
-  align-items: flex-start;
-  gap: 10px;
-  border-radius: 10px;
-  background: var(--offwhite, #EDEAE7);
-  /* Soft Drop */
-  box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
-}
-.card > img {
-  -o-object-fit: cover;
-     object-fit: cover;
-  border-radius: 6px;
-  width: 100%;
-  aspect-ratio: 1;
-}
-.card > .cardTextContainer {
-  display: flex;
-  padding: 7px;
-  flex-direction: column;
-  align-items: flex-start;
-  align-self: stretch;
-  gap: 6px;
-}
-.card > .cardTextContainer > h2 {
-  color: var(--dark-green, #0C5900);
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 126.6%;
-  /* 25.32px */
-  letter-spacing: -0.8px;
-  margin: 0;
-}
-.card > .cardTextContainer > p {
-  color: var(--dark-green, #0C5900);
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 120.6%;
-  /* 19.296px */
-  letter-spacing: -0.4px;
-  margin: 0;
-}
-
-.menuItem:hover > .add {
-  opacity: 1;
-}
-.menuItem .add {
-  opacity: 0.5;
-}
-
-.listCard {
-  /* layout */
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  position: relative;
-  height: auto;
-  padding: 8px 9px;
-  gap: 10px;
-  /* style */
-  border-radius: 10px;
-  background: #EDEAE7;
-  /* Soft Drop */
-  box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
-  transition: transform 100ms cubic-bezier(0.15, 0, 0.17, 1.02), box-shadow 100ms cubic-bezier(0.15, 0, 0.17, 1.02);
-}
-.listCard:hover {
-  transform: translate(-1px, -2.5px);
-  box-shadow: 2px 4px 10px 0px rgba(0, 0, 0, 0.36), 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
-}
-.listCard > img {
-  border-radius: 13px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  width: 130px;
-  height: 100px;
-}
-.listCard > .cardTextContainer {
-  display: flex;
-  padding: 7px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 6px;
-  flex-grow: 1;
-}
-.listCard > .cardTextContainer > h2 {
-  color: #0C5900;
+#ad h1, #ad h2, #ad h3, #ad h4, #ad p, #ad a {
   font-family: "SF Pro Display", sans-serif;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 126.6%;
-  /* 25.32px */
-  letter-spacing: -0.8px;
-  margin: 0;
 }
-.listCard > .cardTextContainer > p {
-  color: #0C5900;
-  font-family: "SF Pro Display", sans-serif;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 120.6%;
-  /* 19.296px */
-  letter-spacing: -0.4px;
-  margin: 0;
-}
-.listCard > .cardTextContainer .deleteButton {
-  position: absolute;
-  top: -8px;
-  left: -16px;
-  color: darkred;
-  /* height: 40px; */
-  padding: 5px;
-}
-.listCard > .cardTextContainer .quantityControls {
-  /* layout */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  /* typography */
-  font-family: "SF Pro Display", sans-serif;
-  font-weight: 500;
-  color: #0C5900;
-}
-.listCard > .cardTextContainer .quantityControls .quantityButton {
-  cursor: pointer;
-}
-
-.button {
-  /* style */
-  border-radius: 200px;
-  border: 3px solid #C6BCB3;
-  background: #EDEAE7;
-  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25), 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-}
-
-.print {
-  padding: 14px;
-  z-index: 1001;
-  border-radius: 12px;
-  border: 3px solid rgba(0, 0, 0, 0.25);
-  background: rgba(237, 234, 231, 0.65);
-  cursor: pointer;
-  box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
-  -webkit-backdrop-filter: blur(32px);
-  backdrop-filter: blur(32px);
-  color: rgba(0, 0, 0, 0.75);
-}
-
-#filterControls {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-}
-#filterControls label {
-  display: none;
-}
-#filterControls .filterButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 30px;
-  padding: 0px 10px;
-  margin: 6px;
-  border-radius: 12px;
-  border: 3px solid #C6BCB3;
-  background: #EDEAE7;
-  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25), 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  font-family: sans-serif;
-  font-size: 14px;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: #888079;
-  line-height: normal;
-  font-style: normal;
-  width: auto;
-}
-
-#totalButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 30px;
-  padding: 0px 10px;
-  margin: 6px;
-  border-radius: 12px;
-  border: 3px solid #C6BCB3;
-  background: #EDEAE7;
-  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25), 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  font-family: sans-serif;
-  font-size: 14px;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: #888079;
-  line-height: normal;
-  font-style: normal;
-  margin: 0;
-  padding: 15px 10px;
-  height: auto;
-  color: black;
-  font-weight: 600;
-}
-
-.dragIcon {
-  color: #C6BCB3;
-  padding: 34px 0;
-  cursor: grab;
-}
-
-.buttonInline {
-  /* layout */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3px;
-  padding: 0px 8px 0 1px;
-  /* style */
-  border-radius: 100px;
-  border: 3px solid #C6BCB3;
-  background: #EDEAE7;
-  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25), 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
-  /* typography */
-  font-family: sans-serif;
-  font-size: 12px;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: #888079;
-  line-height: normal;
-  font-style: normal;
-  cursor: pointer;
-  position: absolute;
-  right: -6px;
-  z-index: 1;
-}
-
-.add {
-  top: -16px;
-}
-
-.lower {
-  top: 20px;
-}
-
-.seeMenuButton {
-  /* layout */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3px;
-  padding: 0px 8px 0 1px;
-  /* style */
-  border-radius: 100px;
-  border: 3px solid #C6BCB3;
-  background: #EDEAE7;
-  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25), 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
-  /* typography */
-  font-family: sans-serif;
-  font-size: 12px;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: #888079;
-  line-height: normal;
-  font-style: normal;
-  cursor: pointer;
-  top: -16px;
-  gap: 7px;
-}
-
-.listDropdown {
-  /* layout */
-  position: fixed;
-  width: auto;
-  bottom: 36px;
-  left: 36px;
-  z-index: 10;
-}
-.listDropdown .toolBar {
-  display: flex;
-  flex-direction: row;
-  gap: 14px;
-}
-.listDropdown .toolBar * {
-  color: rgba(0, 0, 0, 0.75);
-}
-.listDropdown .toolBar > * {
-  padding: 14px;
-  z-index: 1001;
-  /* style */
-  border-radius: 12px;
-  border: 3px solid rgba(0, 0, 0, 0.25);
-  background: rgba(237, 234, 231, 0.65);
-  cursor: pointer;
-  /* effects */
-  box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
-  -webkit-backdrop-filter: blur(32px);
-          backdrop-filter: blur(32px);
-}
-.listDropdown .toolBar .header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 14px;
-  width: auto;
-  position: relative;
-}
-.listDropdown .toolBar .header h1 {
-  /* color: $dark-green; */
-  font-family: "SF Pro Display", sans-serif;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 126.6%;
-  white-space: nowrap;
-  /* 25.32px */
-  letter-spacing: -0.8px;
-  margin: 0;
-}
-.listDropdown .toolBar .header #listCounter {
-  position: absolute;
-  top: -13px;
-  right: -12px;
-  height: 24px;
-  width: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* style */
-  background: rgb(68, 117, 82);
-  /* typography */
-  font-size: 14px;
-  color: #EDEAE7 !important;
-  font-family: "SF Pro Display", sans-serif;
-  font-weight: 300;
-}
-
-/* .shoppingListLayout {
-
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    //overflow: auto;
-    padding: 14px;
-    z-index: 1001;
-    background: rgba(0, 0, 0, 0.35);
-    box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
-    -webkit-backdrop-filter: blur(2px);
-    backdrop-filter: blur(2px);
-} */
-.scrollContainer {
-  /* layout */
-  display: none;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 12px;
-  position: fixed;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  padding: 14px;
-  z-index: 1001;
-  /* style */
-  background: rgba(0, 0, 0, 0.35);
-  /* effects */
-  box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.25), 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
-  -webkit-backdrop-filter: blur(2px);
-          backdrop-filter: blur(2px);
-}
-.scrollContainer #listCardContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 450px;
-  overflow: visible;
-  position: relative;
-}
-.scrollContainer #listCardContainer > :last-child {
-  margin-bottom: 300px;
-}
-.scrollContainer #listControls {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 11px;
-  position: sticky;
-  top: 0;
-}
-.scrollContainer #listControls #scrollPrint {
-  align-items: center;
-  justify-content: center;
-  background: #EDEAE7;
-}
-
-.showCards {
-  display: flex !important;
-}
-
-.noScroll {
-  overflow: hidden;
-}
-
-.ghost {
-  opacity: 0.5;
-}
-
-@media only screen and (max-width: 600px) {
-  .card {
-    width: 140px;
-  }
-  .scrollContainer {
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-  }
-  .scrollContainer #listCardContainer {
-    order: 2;
-    width: 92vw;
-  }
-  .scrollContainer #listControls {
-    order: 1;
-    flex-direction: row;
-  }
-}
-/* css selectors for printing */
-@media print {
-  body :not(.scrollContainer *):not(.scrollContainer) {
-    display: none !important;
-  }
-  .scrollContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    position: relative;
-    overflow: visible;
-    background: white;
-    box-shadow: none;
-  }
-  .scrollContainer #listCardContainer {
-    display: flex;
-    order: 2;
-    height: auto;
-    max-height: none;
-    width: 100vw;
-  }
-  .scrollContainer #listCardContainer .listCard {
-    background-color: white !important;
-    width: 90vw !important;
-  }
-  .scrollContainer #listCardContainer .listCard > .cardTextContainer .deleteButton {
-    display: none;
-  }
-  .scrollContainer #listControls {
-    order: 1;
-    flex-direction: row;
-  }
-  .scrollContainer #listControls #scrollPrint {
-    display: none;
-  }
-}
-body {
-  padding: 16px;
-}
-
-id-element {
-  display: none;
-}
-
-#weeklyadContainer {
-  width: 95vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.cardContainer {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.menuContainer {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  flex-grow: 1;
-  /* &:hover > .menuItemContainer {
-  	display: flex;
-  } */
-}
-.menuContainer .menuItemContainer {
-  display: none;
-  gap: 10px;
-  flex-direction: column;
-  max-height: 420px;
-  flex-wrap: wrap;
-  flex-grow: 1;
-}
-.menuContainer .menuItemContainer .menuItem {
-  order: 1;
-  width: auto;
-  min-width: 150px;
-}
-.menuContainer .menuItemContainer .menuItem .cardTextContainer {
-  gap: 0;
-  padding: 0;
-}
-.menuContainer .menuItemContainer .menuSpacer {
-  order: 2;
-  flex-grow: 20;
-}
-
-.flex {
-  display: flex !important;
+#ad h1 {
+  font-size: calc(24px + 6 * (100vw - 320px) / 680);
 }/*# sourceMappingURL=main.css.map */

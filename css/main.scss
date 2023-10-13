@@ -1,7 +1,10 @@
-@import './base/typography';
-@import './components/card';
-@import './components/button';
-@import './layout/shoppingList';
-@import './layout/general';
-@import './abstract/mixins';
-@import './abstract/variables';
+#ad {
+    @import './abstract/mixins';
+    @import './abstract/variables';
+    @import './components/card';
+    @import './components/button';
+    @import './layout/shoppingList';
+    @import './layout/general';
+    @import './base/typography';
+}
+

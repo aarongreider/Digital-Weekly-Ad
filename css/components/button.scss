@@ -66,15 +66,15 @@
 }
 
 .add {
-	top: -16px;
+	top: -4px;
 }
 
 .lower {
-    top: 20px;
+    top: 30px;
 }
 
 .seeMenuButton {
 	@include buttonInline();
-	top: -16px;
+	top: -4px;
 	gap: 7px;
 }

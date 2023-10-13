@@ -186,7 +186,7 @@ function appendShoppingList() {
     let parent = document.getElementById('weeklyadContainer')
     let div = document.createElement('div');
     div.className = 'listDropdown';
-    document.body.append(div)
+    document.getElementById('ad').append(div)
 
     let shoppingList = getShoppingListFrag();
     div.append(shoppingList.content);
@@ -206,7 +206,7 @@ function setUpCardContainer() {
         </div>`;
 
     container.innerHTML = fragment;
-    document.body.prepend(container.content)
+    document.getElementById('ad').prepend(container.content)
 }
 
 function getShoppingListFrag() {

@@ -14,6 +14,10 @@ function loadWeeklyAd() {
                 let sections = groupByKey(lsProps.section, response)
                 let categories = groupByKey(lsProps.category, response)
 
+                let container = document.createElement('div');
+                container.id = 'ad';
+                document.body.appendChild(container);
+
                 appendFilters();
                 jsonToCards(sections);
                 initializeFilters(sections, categories);
@@ -41,7 +45,7 @@ function jsonToCards(groups /* , parent */) {
 
     let parent = document.createElement('div');
     parent.id = 'weeklyadContainer';
-    document.body.appendChild(parent);
+    document.getElementById('ad').appendChild(parent);
 
     //console.log("json => cards groups:")
     console.log(groups)
@@ -238,7 +242,7 @@ function populateFilters(sections, categories) {
 function appendFilters() {
     let div = document.createElement('div');
     div.id = 'filterControls';
-    document.body.append(div);
+    document.getElementById('ad').append(div);
 
     const card = document.createElement('template');
 

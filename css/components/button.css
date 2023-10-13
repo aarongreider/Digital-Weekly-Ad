@@ -89,6 +89,7 @@
   align-items: center;
   gap: 3px;
   padding: 0px 8px 0 1px;
+  margin: 0;
   /* style */
   border-radius: 100px;
   border: 3px solid #C6BCB3;
@@ -109,11 +110,11 @@
 }
 
 .add {
-  top: -16px;
+  top: -4px;
 }
 
 .lower {
-  top: 20px;
+  top: 30px;
 }
 
 .seeMenuButton {
@@ -123,6 +124,7 @@
   align-items: center;
   gap: 3px;
   padding: 0px 8px 0 1px;
+  margin: 0;
   /* style */
   border-radius: 100px;
   border: 3px solid #C6BCB3;
@@ -137,6 +139,6 @@
   line-height: normal;
   font-style: normal;
   cursor: pointer;
-  top: -16px;
+  top: -4px;
   gap: 7px;
 }/*# sourceMappingURL=button.css.map */
