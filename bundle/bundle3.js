@@ -1,3 +1,47 @@
+
+let lsProps = {
+    page: "PAGE",
+    block: "BLOCK",
+    section: "SECTION",
+    brand: "BRAND NAME",
+    description: "PRODUCT DESCRIPTION",
+    category: "PRODUCT CATEGORY",
+    price: "PRICE",
+    size: "SIZE",
+    unit: "UNIT",
+    menu: "MENU",
+    priceDisplay: "DISPLAY PRICE",
+    save: "SAVE",
+    additional: "ADDITIONAL TEXT",
+    instructions: "INSTRUCTIONS",
+    image: "IMG URL",
+    id: "ID"
+}
+let listKey = 'shopping list';
+
+let actions = {
+    add: "add",
+    remove: "remove",
+    update: "update",
+    check: "check"
+}
+
+loadWeeklyAd().then(result => {
+    const style = 'color: grey;'
+    console.log("%ccards loaded. loading shopping list", style);
+
+    loadShoppingList(result).then(result2 => {
+        console.log("%cshopping list loaded. loading animations", style)
+
+        handleAnimations().then(result3 => {
+            console.log("%canimations loaded", style)
+        })
+    })
+})
+
+
+
+
 function loadWeeklyAd() {
     return new Promise((resolve, reject) => {
         //fetch('https://script.google.com/macros/s/AKfycbw-ZbsqEASuUT_pNWggkiHaeqUr20qI9xXfOT7g7WbvLZOuZpQMpF67_l4lMkxcmNRQaQ/exec') // old one
@@ -264,7 +308,7 @@ function handleAnimations() {
             //Sortable.mount(new AutoScroll());
             let listCardContainer = document.getElementById('listCardContainer')
             let scrollContainer = document.getElementsByClassName('scrollContainer')[0]
-            
+
             new Sortable(listCardContainer, {
                 animation: 300,
                 ghostClass: 'ghost',
@@ -287,7 +331,7 @@ function handleAnimations() {
 
 
                 }, */
-                
+
             });
 
             resolve(true);
@@ -498,7 +542,7 @@ function alterLocalStorage(action, target, data = undefined, isAdding = false) {
 
 function getLocalStorageItemMatch(value, prop, key = listKey) {
     let list = JSON.parse(localStorage.getItem(key));
-    
+
 
     for (let i = 0; i < list.length; i++) {
         if (value.localeCompare(list[i][prop]) === 0) {
