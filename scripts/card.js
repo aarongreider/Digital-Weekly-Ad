@@ -13,7 +13,7 @@ function getCardFrag(brand, title, price, save, img, menu, id) {
                             <h2>${title}</h2>
                             <p>${price}</p>
                         </div>
-                        <p class="buttonInline add">
+                        <p class="buttonInline add lower">
                             <span class="material-symbols-outlined">add_circle</span>Add to List
                         </p>
                         <p class="buttonInline seeMenuButton">
@@ -89,3 +89,4 @@ function getListCardFrag(title, price, save, img, quantity, menu, id) {
     listCard.innerHTML = fragment;
     return listCard;
 }
+

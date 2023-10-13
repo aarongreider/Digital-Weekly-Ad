@@ -57,3 +57,24 @@
     padding: 34px 0;
     cursor: grab;
 }
+
+.buttonInline {
+	@include buttonInline();
+	position: absolute;
+	right: -6px;
+	z-index: 1;
+}
+
+.add {
+	top: -16px;
+}
+
+.lower {
+    top: 20px;
+}
+
+.seeMenuButton {
+	@include buttonInline();
+	top: -16px;
+	gap: 7px;
+}

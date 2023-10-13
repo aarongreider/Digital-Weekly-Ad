@@ -13,3 +13,4 @@ loadWeeklyAd().then(result => {
         })
     })
 })
+

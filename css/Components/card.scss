@@ -74,24 +74,6 @@
 	}
 	
 }
-.buttonInline {
-	@include buttonInline();
-	position: absolute;
-	right: -6px;
-	z-index: 1;
-}
-
-.add {
-	top: -16px;
-}
-
-.seeMenuButton {
-	@include buttonInline();
-	top: 20px;
-	gap: 7px;
-}
-
-
 
 .listCard {
 	/* layout */

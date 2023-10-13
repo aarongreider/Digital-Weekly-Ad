@@ -225,3 +225,4 @@ function getShoppingListFrag() {
     card.innerHTML = fragment;
     return card;
 }
+

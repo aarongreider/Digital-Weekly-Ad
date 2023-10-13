@@ -14,7 +14,7 @@ function loadWeeklyAd() {
                 let sections = groupByKey(lsProps.section, response)
                 let categories = groupByKey(lsProps.category, response)
 
-
+                appendFilters();
                 jsonToCards(sections);
                 initializeFilters(sections, categories);
                 initializeLocalStorage();
@@ -143,7 +143,7 @@ function setMenuItemListeners() {
                     console.log(y)
 
                     window.scrollTo({ top: y, behavior: 'smooth' }); */
-                    button.scrollIntoView({ behavior: 'smooth',  block: 'center'})
+                    button.scrollIntoView({ behavior: 'smooth', block: 'center' })
                 }
             }, 200)
         });
@@ -234,3 +234,27 @@ function populateFilters(sections, categories) {
         categoryDropdown.appendChild(option);
     }
 }
+
+function appendFilters() {
+    let div = document.createElement('div');
+    div.id = 'filterControls';
+    document.body.prepend(div);
+
+    const card = document.createElement('template');
+
+    let fragment = `
+        <div id="filterControls">
+            <label for="sectionDropdown">Filter Section</label>
+            <select id="sectionDropdown" class="filterButton">
+                <option value="All" selected="selected">All Sections</option>
+            </select>
+
+            <label for="categoryDropdown">Filter Category</label>
+            <select id="categoryDropdown" class="filterButton">
+                <option value="All" selected="selected">All Categories</option>
+            </select>
+        </div>`
+    card.innerHTML = fragment;
+    div.append(card.content);
+}
+
