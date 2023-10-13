@@ -9,13 +9,14 @@
     @include button();
 
     width: auto;
+    height: auto;
     margin: 20px 100% 0 0;
     padding: 16px 38px;
     z-index: 2;
     border-radius: 80px;
     text-align: center;
     position: sticky;
-    top: 16px;
+    top: 60px;
     white-space: nowrap;
     background: rgba(255,255,255,.5);
     -webkit-backdrop-filter: blur(32px);

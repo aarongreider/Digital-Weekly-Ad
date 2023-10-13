@@ -238,7 +238,7 @@ function populateFilters(sections, categories) {
 function appendFilters() {
     let div = document.createElement('div');
     div.id = 'filterControls';
-    document.body.prepend(div);
+    document.body.append(div);
 
     const card = document.createElement('template');
 
