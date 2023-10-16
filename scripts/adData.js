@@ -1,7 +1,12 @@
 function loadWeeklyAd() {
     return new Promise((resolve, reject) => {
         //fetch('https://script.google.com/macros/s/AKfycbw-ZbsqEASuUT_pNWggkiHaeqUr20qI9xXfOT7g7WbvLZOuZpQMpF67_l4lMkxcmNRQaQ/exec') // old one
+        
+        /* fetch('https://drive.google.com/uc?export=download&id=1Xbj9Vrcmqij82rZcGUB031KP4_K1heBi') */
+        /* fetch('https://drive.google.com/file/d/1UFyYbGSrIFaUh6-DNaBNJN-jAwSMG0HBmHzW_NPLh9Q/export?format=txt') */
+        /* fetch('https://drive.google.com/file/d/1Xbj9Vrcmqij82rZcGUB031KP4_K1heBi/export?format=txt') */
         fetch('https://script.google.com/macros/s/AKfycbwo8bAdEp9koFVzqfPeh4Y7C4x4p-c-zHydPTxmtOuMhZCpRPQQ4kQQ2WtkQRAnaisa6w/exec')
+        
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`Network response was not ok: ${response.status}`);
@@ -10,6 +15,7 @@ function loadWeeklyAd() {
             })
             .then(response => {
                 // Process the JSON data here
+                console.log(response)
                 response = response.data[0]["10-02-23"];
                 let sections = groupByKey(lsProps.section, response)
                 let categories = groupByKey(lsProps.category, response)
