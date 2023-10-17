@@ -7,7 +7,6 @@
   flex-direction: column;
   flex-grow: 1;
   align-items: flex-start;
-  gap: 10px;
   border-radius: 10px;
   background: var(--offwhite, #EDEAE7);
   /* Soft Drop */
@@ -23,31 +22,68 @@
 }
 .card > .cardTextContainer {
   display: flex;
-  padding: 7px;
+  padding: 13px 7px 0;
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
-  gap: 6px;
+  gap: 0.25em;
+  font-size: 16px;
 }
 .card > .cardTextContainer > h2 {
-  color: var(--dark-green, #0C5900);
-  font-size: 20px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 1.5em;
   font-style: normal;
   font-weight: 700;
-  line-height: 126.6%;
-  /* 25.32px */
-  letter-spacing: -0.8px;
+  line-height: 100%;
+  letter-spacing: 0.5px;
   margin: 0;
 }
+.card > .cardTextContainer > h3 {
+  font-family: "myriad-pro-semi-condensed", sans-serif;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 1em;
+}
 .card > .cardTextContainer > p {
-  color: var(--dark-green, #0C5900);
-  font-size: 16px;
+  font-family: "myriad-pro-semi-condensed", sans-serif;
+  font-size: 1em;
   font-style: normal;
-  font-weight: 400;
-  line-height: 120.6%;
-  /* 19.296px */
+  font-weight: 900;
+  line-height: 120%;
   letter-spacing: -0.4px;
   margin: 0;
+}
+.card > .cardTextContainer sup {
+  font-size: 3em;
+  margin: 0.1em 0;
+}
+.card > .cardTextContainer .dollar {
+  font-size: 6em;
+  margin: 0;
+}
+
+.priceContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  color: #000;
+  margin: -0.85em 0 0 0;
+  /* typography */
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.187px;
+}
+.priceContainer > div {
+  display: flex;
+  padding-top: 6.375px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5em;
+}
+.priceContainer .unit {
+  font-family: "myriad-pro-semi-condensed", sans-serif;
+  font-weight: 900;
 }
 
 .menuItem:hover > .add {
@@ -90,12 +126,11 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: 6px;
   flex-grow: 1;
 }
 .listCard > .cardTextContainer > h2 {
   color: #0C5900;
-  font-family: "SF Pro Display", sans-serif;
+  font-family: "myriad-pro-semi-condensed", sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -106,7 +141,7 @@
 }
 .listCard > .cardTextContainer > p {
   color: #0C5900;
-  font-family: "SF Pro Display", sans-serif;
+  font-family: "myriad-pro-semi-condensed", sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -130,7 +165,7 @@
   justify-content: center;
   gap: 8px;
   /* typography */
-  font-family: "SF Pro Display", sans-serif;
+  font-family: "myriad-pro-semi-condensed", sans-serif;
   font-weight: 500;
   color: #0C5900;
 }

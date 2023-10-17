@@ -1,4 +1,7 @@
 #ad {
+  /* * {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  } */
   /* .shoppingListLayout {
 
       position: absolute;
@@ -18,9 +21,38 @@
       backdrop-filter: blur(2px);
   } */
   /* css selectors for printing */
-  /* * {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  } */
+}
+#ad .sectionHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  padding: 0px 10px;
+  margin: 6px;
+  border-radius: 12px;
+  border: 3px solid #C6BCB3;
+  background: #EDEAE7;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25), 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  width: auto;
+  height: auto;
+  margin: 20px 100% 0 0;
+  padding: 16px 38px;
+  z-index: 2;
+  border-radius: 80px;
+  text-align: center;
+  position: sticky;
+  top: 60px;
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(32px);
+  backdrop-filter: blur(32px);
+}
+#ad h1, #ad h2, #ad h3, #ad h4, #ad a {
+  font-family: "myriad-pro-semi-condensed", sans-serif;
+}
+#ad h1 {
+  font-size: calc(24px + 6 * (100vw - 320px) / 680);
 }
 #ad .card {
   display: flex;
@@ -31,7 +63,6 @@
   flex-direction: column;
   flex-grow: 1;
   align-items: flex-start;
-  gap: 10px;
   border-radius: 10px;
   background: var(--offwhite, #EDEAE7);
   /* Soft Drop */
@@ -47,31 +78,67 @@
 }
 #ad .card > .cardTextContainer {
   display: flex;
-  padding: 7px;
+  padding: 13px 7px 0;
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
-  gap: 6px;
+  gap: 0.25em;
+  font-size: 16px;
 }
 #ad .card > .cardTextContainer > h2 {
-  color: var(--dark-green, #0C5900);
-  font-size: 20px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 1.5em;
   font-style: normal;
   font-weight: 700;
-  line-height: 126.6%;
-  /* 25.32px */
-  letter-spacing: -0.8px;
+  line-height: 100%;
+  letter-spacing: 0.5px;
   margin: 0;
 }
+#ad .card > .cardTextContainer > h3 {
+  font-family: "myriad-pro-semi-condensed", sans-serif;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 1em;
+}
 #ad .card > .cardTextContainer > p {
-  color: var(--dark-green, #0C5900);
-  font-size: 16px;
+  font-family: "myriad-pro-semi-condensed", sans-serif;
+  font-size: 1em;
   font-style: normal;
-  font-weight: 400;
-  line-height: 120.6%;
-  /* 19.296px */
+  font-weight: 900;
+  line-height: 120%;
   letter-spacing: -0.4px;
   margin: 0;
+}
+#ad .card > .cardTextContainer sup {
+  font-size: 3em;
+  margin: 0.1em 0;
+}
+#ad .card > .cardTextContainer .dollar {
+  font-size: 6em;
+  margin: 0;
+}
+#ad .priceContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  color: #000;
+  margin: -0.85em 0 0 0;
+  /* typography */
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.187px;
+}
+#ad .priceContainer > div {
+  display: flex;
+  padding-top: 6.375px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5em;
+}
+#ad .priceContainer .unit {
+  font-family: "myriad-pro-semi-condensed", sans-serif;
+  font-weight: 900;
 }
 #ad .menuItem:hover > .add {
   opacity: 1;
@@ -112,12 +179,11 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: 6px;
   flex-grow: 1;
 }
 #ad .listCard > .cardTextContainer > h2 {
   color: #0C5900;
-  font-family: "SF Pro Display", sans-serif;
+  font-family: "myriad-pro-semi-condensed", sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -128,7 +194,7 @@
 }
 #ad .listCard > .cardTextContainer > p {
   color: #0C5900;
-  font-family: "SF Pro Display", sans-serif;
+  font-family: "myriad-pro-semi-condensed", sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -152,7 +218,7 @@
   justify-content: center;
   gap: 8px;
   /* typography */
-  font-family: "SF Pro Display", sans-serif;
+  font-family: "myriad-pro-semi-condensed", sans-serif;
   font-weight: 500;
   color: #0C5900;
 }
@@ -334,7 +400,7 @@
 }
 #ad .listDropdown .toolBar .header h1 {
   /* color: $dark-green; */
-  font-family: "SF Pro Display", sans-serif;
+  font-family: "myriad-pro-semi-condensed", sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
@@ -358,7 +424,7 @@
   /* typography */
   font-size: 14px;
   color: #EDEAE7 !important;
-  font-family: "SF Pro Display", sans-serif;
+  font-family: "myriad-pro-semi-condensed", sans-serif;
   font-weight: 300;
 }
 #ad .scrollContainer {
@@ -522,36 +588,4 @@
 }
 #ad .flex {
   display: flex !important;
-}
-#ad .sectionHeader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 30px;
-  padding: 0px 10px;
-  margin: 6px;
-  border-radius: 12px;
-  border: 3px solid #C6BCB3;
-  background: #EDEAE7;
-  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25), 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  width: auto;
-  height: auto;
-  margin: 20px 100% 0 0;
-  padding: 16px 38px;
-  z-index: 2;
-  border-radius: 80px;
-  text-align: center;
-  position: sticky;
-  top: 60px;
-  white-space: nowrap;
-  background: rgba(255, 255, 255, 0.5);
-  -webkit-backdrop-filter: blur(32px);
-  backdrop-filter: blur(32px);
-}
-#ad h1, #ad h2, #ad h3, #ad h4, #ad p, #ad a {
-  font-family: "SF Pro Display", sans-serif;
-}
-#ad h1 {
-  font-size: calc(24px + 6 * (100vw - 320px) / 680);
 }/*# sourceMappingURL=main.css.map */

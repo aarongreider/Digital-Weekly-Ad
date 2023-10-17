@@ -5,13 +5,13 @@
 	display: flex;
 	position: relative;
 	width: 200px;
-    max-width: 300px;
+	max-width: 300px;
 	padding: 8px 9px;
 	flex-direction: column;
 	flex-grow: 1;
 	align-items: flex-start;
-	gap: 10px;
-	
+	//gap: 10px;
+
 
 	border-radius: 10px;
 	background: var(--offwhite, #EDEAE7);
@@ -28,52 +28,99 @@
 
 	>.cardTextContainer {
 		display: flex;
-		padding: 7px;
+		padding: 13px 7px 0;
 		flex-direction: column;
 		align-items: flex-start;
 		align-self: stretch;
-		gap: 6px;
+		gap: .25em;
+		font-size: 16px;
 
 		>h2 {
-			color: var(--dark-green, #0C5900);
-			//font-family: SF Pro Display;
-			font-size: 20px;
+			//color: var(--dark-green, #0C5900);
+			font-family: $font-family-bold;
+			font-size: 1.5em;
 			font-style: normal;
 			font-weight: 700;
-			line-height: 126.6%;
-			/* 25.32px */
-			letter-spacing: -0.8px;
-		
+			line-height: 100%;
+			letter-spacing: .5px;
+
 			margin: 0;
 		}
 
+		>h3 {
+			font-family: $font-family;
+			text-transform: uppercase;
+			margin: 0;
+			font-size: 1em;
+		}
+
 		>p {
-			color: var(--dark-green, #0C5900);
-			//font-family: SF Pro Display;
-			font-size: 16px;
+			//color: var(--dark-green, #0C5900);
+			font-family: $font-family;
+			font-size: 1em;
 			font-style: normal;
-			font-weight: 400;
-			line-height: 120.6%;
-			/* 19.296px */
+			font-weight: 900;
+			line-height: 120%;
 			letter-spacing: -0.4px;
-		
+
+			margin: 0;
+		}
+
+		sup {
+			font-size: 3em;
+			margin: .1em 0;
+		}
+
+		.dollar {
+			font-size: 6em;
 			margin: 0;
 		}
 	}
 
 }
 
+.priceContainer {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+
+	color: #000;
+	margin: -.85em 0 0 0;
+	/* typography */
+	font-family: $font-family-bold;
+	font-style: normal;
+	font-weight: 400;
+	letter-spacing: 0.187px;
+
+	>div {
+		display: flex;
+		padding-top: 6.375px;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: .5em;
+	}
+
+	.unit {
+		font-family: $font-family;
+		font-weight: 900;
+	}
+
+
+}
+
+
+
 .menuItem {
 	// more in general
-	
-	&:hover > .add {
+
+	&:hover>.add {
 		opacity: 1;
 	}
 
 	.add {
 		opacity: .5;
 	}
-	
+
 }
 
 .listCard {
@@ -112,7 +159,7 @@
 		flex-direction: column;
 		align-items: flex-start;
 		justify-content: center;
-		gap: 6px;
+		//gap: 6px;
 		flex-grow: 1;
 
 		>h2 {
@@ -168,5 +215,5 @@
 		}
 	}
 
-	
+
 }

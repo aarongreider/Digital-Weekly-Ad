@@ -1,10 +1,11 @@
 #ad {
     @import './abstract/mixins';
     @import './abstract/variables';
+    @import './base/typography';
     @import './components/card';
     @import './components/button';
     @import './layout/shoppingList';
     @import './layout/general';
-    @import './base/typography';
+    
 }
 
