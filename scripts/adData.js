@@ -2,7 +2,7 @@ function loadWeeklyAd() {
     return new Promise((resolve, reject) => {
         //fetch('https://script.google.com/macros/s/AKfycbw-ZbsqEASuUT_pNWggkiHaeqUr20qI9xXfOT7g7WbvLZOuZpQMpF67_l4lMkxcmNRQaQ/exec') // old one
         // fetch('https://script.google.com/macros/s/AKfycbwo8bAdEp9koFVzqfPeh4Y7C4x4p-c-zHydPTxmtOuMhZCpRPQQ4kQQ2WtkQRAnaisa6w/exec')
-        fetch('https://aaron.greider.org/Digital-Weekly-Ad/json/231002_ad.json')
+        fetch('https://aaron.greider.org/Digital-Weekly-Ad/json/231002-2_adData.json')
         
             .then(response => {
                 if (!response.ok) {
@@ -67,7 +67,7 @@ function jsonToCards(groups /* , parent */) {
         div.prepend(h1);
 
         groups[group].forEach(item => {
-            let card = getCardFrag(item[lsProps.brand], item[lsProps.description], item[lsProps.price], item[lsProps.priceDisplay], item[lsProps.additional], item[lsProps.image], item[lsProps.menu], item[lsProps.id], item[lsProps.size], item[lsProps.unit])
+            let card = getCardFrag(item[lsProps.brand], item[lsProps.description], item[lsProps.price], item[lsProps.priceDisplay], item[lsProps.additional], item[lsProps.image], item[lsProps.menu], item[lsProps.id], item[lsProps.size], item[lsProps.unit], item[lsProps.badges])
             if (item[lsProps.menu] == 'menu') {
                 const menuContainers = div.getElementsByClassName('menuItemContainer');
                 menuContainers[menuContainers.length - 1].append(card.content);

@@ -1,4 +1,4 @@
-function getCardFrag(brand, title, price, priceDisplay, save, img, menu, id, size, unit) {
+function getCardFrag(brand, title, price, priceDisplay, save, img, menu, id, size, unit, badges) {
     const card = document.createElement('template');
     let fragment, cardClassList;
 
@@ -13,12 +13,41 @@ function getCardFrag(brand, title, price, priceDisplay, save, img, menu, id, siz
             cardClassList = `card`;
             break;
     }
-
+    let badgeImgs = '';
+    console.log(badges);
+    if (badges) {
+        //console.log(badges);
+        badges = JSON.parse(badges)
+        
+        badges.forEach(badge => {
+            //console.log(badge)
+            switch (badge) {
+                case "JJ Badge": `${badgeImgs}<img src="https://aaron.greider.org/Digital-Weekly-Ad/images/badges/JJBadge.png">`; console.log(badge);
+                    break;
+                case "Amish":
+                    break;
+                case "Ohio Proud":
+                    break;
+                case "Organic":
+                    break;
+                case "Non GMO":
+                    break;
+                case "USDA Choice":
+                    break;
+                case "USDA Prime":
+                    break;
+                case "Mix & Match!":
+                    break;
+                default:
+                    break;
+            }
+        })
+    }
     fragment = `<div class="${cardClassList}">
                     <id-element data-id="${id}"></id-element>
                     ${menu != 'menu' ? `<img src="${img}">` : ''}
-                    <div class="badgeContainer"></div>
-                    ${getCardTextContainerWidget(brand, title, price,  priceDisplay, size, unit)}
+                    <div class="badgeContainer">${badgeImgs}</div>
+                    ${getCardTextContainerWidget(brand, title, price, priceDisplay, size, unit)}
                     ${getButtonWidget(menu)}
                 </div>`
 
@@ -34,12 +63,12 @@ function getCardFrag(brand, title, price, priceDisplay, save, img, menu, id, siz
     card.innerHTML = fragment;
     return card;
 }
-    
+
 function getCardTextContainerWidget(brand, title, price, priceDisplay, size, unit) {
     return `<div class="cardTextContainer">
         <h3>${brand}</h3>
         <h2>${title}</h2>
-        ${priceDisplay=="NORMAL" ?`<p class="unit">${size} ${unit}</p>` : ''}
+        ${priceDisplay == "NORMAL" ? `<p class="unit">${size} ${unit}</p>` : ''}
         ${getPriceWidget(price.toString(), priceDisplay, unit)}
     </div>`
 }
@@ -82,7 +111,7 @@ function getPriceWidget(price, priceDisplay, unit) {
 
     let belowOne = dollars < 1.0;
     let isFree = dollars == 0 && cents == 0;
-    
+
     let fragment;
     if (isFree) {
         fragment = `
@@ -97,7 +126,7 @@ function getPriceWidget(price, priceDisplay, unit) {
                 <div>
                     ${!belowOne && cents != 0 ? `<sup>${cents}</sup>` : ''}
                     ${belowOne ? '<sup>¢</sup>' : ''}
-                    ${priceDisplay=="BY WEIGHT" ?`<p class="unit" style="margin: 0 4px;">${unit}</p>` : ''}
+                    ${priceDisplay == "BY WEIGHT" ? `<p class="unit" style="margin: 0 4px;">${unit}</p>` : ''}
                 </div>
             </div>`
     }
