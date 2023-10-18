@@ -37,7 +37,7 @@
 }
 .listDropdown .toolBar .header h1 {
   /* color: $dark-green; */
-  font-family: "SF Pro Display", sans-serif;
+  font-family: "myriad-pro-semi-condensed", sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
@@ -61,7 +61,7 @@
   /* typography */
   font-size: 14px;
   color: #EDEAE7 !important;
-  font-family: "SF Pro Display", sans-serif;
+  font-family: "myriad-pro-semi-condensed", sans-serif;
   font-weight: 300;
 }
 

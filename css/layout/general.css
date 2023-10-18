@@ -49,7 +49,7 @@ id-element {
 }
 .menuContainer .menuItemContainer .menuSpacer {
   order: 2;
-  flex-grow: 20;
+  flex-grow: 9999999;
 }
 
 .flex {

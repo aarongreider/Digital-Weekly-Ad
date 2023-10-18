@@ -86,25 +86,24 @@
   font-size: 16px;
 }
 #ad .card > .cardTextContainer > h2 {
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-family: "Barlow Condensed", sans-serif;
   font-size: 1.5em;
   font-style: normal;
   font-weight: 700;
   line-height: 100%;
-  letter-spacing: 0.5px;
   margin: 0;
 }
 #ad .card > .cardTextContainer > h3 {
-  font-family: "myriad-pro-semi-condensed", sans-serif;
-  text-transform: uppercase;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 500;
   margin: 0;
   font-size: 1em;
 }
 #ad .card > .cardTextContainer > p {
-  font-family: "myriad-pro-semi-condensed", sans-serif;
+  font-family: "Barlow Condensed", sans-serif;
   font-size: 1em;
   font-style: normal;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 120%;
   letter-spacing: -0.4px;
   margin: 0;
@@ -116,6 +115,77 @@
 #ad .card > .cardTextContainer .dollar {
   font-size: 6em;
   margin: 0;
+}
+#ad .card > .cardTextContainer .percentOff {
+  font-size: 3em;
+  margin: 18px 0 0 0;
+  line-height: 100%;
+}
+#ad .card > .cardTextContainer .specialtyAmnt {
+  font-size: 1.5em;
+  line-height: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: row;
+}
+#ad .card > .cardTextContainer .specialtyAmnt span {
+  font-size: 1.75em;
+}
+#ad .card .additionalText {
+  font-family: "myriad-pro-condensed", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  margin: 0;
+  flex-grow: 1;
+  display: flex;
+  align-items: flex-end;
+}
+#ad .save {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 35%;
+  right: -6%;
+  filter: drop-shadow(2px 2px 2px rgba(50, 50, 0, 0.35));
+}
+#ad .save .star {
+  background: #FFE600;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  -webkit-clip-path: polygon(50% 0%, 67% 26%, 98% 35%, 76% 59%, 79% 91%, 49% 77%, 21% 91%, 22% 61%, 2% 35%, 32% 26%);
+          clip-path: polygon(50% 0%, 67% 26%, 98% 35%, 76% 59%, 79% 91%, 49% 77%, 21% 91%, 22% 61%, 2% 35%, 32% 26%);
+}
+#ad .save p {
+  font-size: 24px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff;
+  position: relative;
+  text-align: center;
+  line-height: 100%;
+}
+#ad .save span {
+  color: red;
+  font-family: "Permanent Marker", cursive;
+}
+#ad .badgeContainer {
+  display: flex;
+  flex-direction: column;
+  width: 60px;
+  gap: 6px;
+  position: absolute;
+  top: 0;
+  left: -4px;
+}
+#ad .badgeContainer .badge {
+  -o-object-fit: contain;
+     object-fit: contain;
+  width: 100%;
+  height: auto;
 }
 #ad .priceContainer {
   display: flex;
@@ -137,14 +207,20 @@
   gap: 0.5em;
 }
 #ad .priceContainer .unit {
-  font-family: "myriad-pro-semi-condensed", sans-serif;
-  font-weight: 900;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 500;
 }
 #ad .menuItem:hover > .add {
   opacity: 1;
 }
 #ad .menuItem .add {
   opacity: 0.5;
+}
+#ad .menuItem .priceContainer {
+  font-size: 10px;
+}
+#ad .menuItem .badgeContainer {
+  display: none;
 }
 #ad .listCard {
   /* layout */
@@ -584,7 +660,7 @@
 }
 #ad .menuContainer .menuItemContainer .menuSpacer {
   order: 2;
-  flex-grow: 20;
+  flex-grow: 9999999;
 }
 #ad .flex {
   display: flex !important;
