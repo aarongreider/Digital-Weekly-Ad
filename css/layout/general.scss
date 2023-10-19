@@ -18,7 +18,8 @@ id-element {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	gap: 16px;
+	//gap: 16px;
+	gap: calc(16px + 5 /* base offset at specified viewport width */ * (100vw - 320px /* vp width */) / 400 /* scale of max value */);
 	//padding: 16px;
 }
 
