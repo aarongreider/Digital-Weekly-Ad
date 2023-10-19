@@ -64,6 +64,9 @@
   font-family: "myriad-pro-semi-condensed", sans-serif;
   font-weight: 300;
 }
+.listDropdown .toolBar .listIcon {
+  font-size: 24px;
+}
 
 /* .shoppingListLayout {
 

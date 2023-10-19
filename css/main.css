@@ -22,33 +22,57 @@
   } */
   /* css selectors for printing */
 }
-#ad .sectionHeader {
+#ad .sectionHeadContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: sticky;
+  top: 16px;
+  z-index: 2;
+}
+#ad .sectionHeadContainer .sectionHeader {
+  width: auto;
+  height: auto;
+  text-align: center;
+  white-space: nowrap;
+}
+#ad .sectionHeadContainer .bannerContainer {
+  position: relative;
+  filter: drop-shadow(2px 2px 2px rgba(50, 50, 0, 0.35));
+}
+#ad .sectionHeadContainer .bannerContainer .tagline {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 30px;
-  padding: 0px 10px;
-  margin: 6px;
-  border-radius: 12px;
-  border: 3px solid #C6BCB3;
-  background: #EDEAE7;
-  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25), 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  width: auto;
-  height: auto;
-  margin: 20px 100% 0 0;
-  padding: 16px 38px;
-  z-index: 2;
-  border-radius: 80px;
-  text-align: center;
-  position: sticky;
-  top: 60px;
-  white-space: nowrap;
-  background: rgba(255, 255, 255, 0.5);
-  -webkit-backdrop-filter: blur(32px);
-  backdrop-filter: blur(32px);
+  height: 50px;
+  background: #0C5900;
+  color: white;
+  padding: 0 80px;
 }
-#ad h1, #ad h2, #ad h3, #ad h4, #ad a {
+#ad .sectionHeadContainer .bannerContainer .bannerBack {
+  width: 90px;
+  height: 50px;
+  position: absolute;
+  background: #0C5900;
+}
+#ad .sectionHeadContainer .bannerContainer .left {
+  left: 0;
+  -webkit-clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0% 50%);
+          clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0% 50%);
+  transform: translate(-40px, -60px);
+}
+#ad .sectionHeadContainer .bannerContainer .right {
+  right: 0;
+  transform: translate(60px, -60px);
+  -webkit-clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+          clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+}
+#ad h1,
+#ad h2,
+#ad h3,
+#ad h4,
+#ad a {
   font-family: "myriad-pro-semi-condensed", sans-serif;
 }
 #ad h1 {
@@ -502,6 +526,9 @@
   color: #EDEAE7 !important;
   font-family: "myriad-pro-semi-condensed", sans-serif;
   font-weight: 300;
+}
+#ad .listDropdown .toolBar .listIcon {
+  font-size: 24px;
 }
 #ad .scrollContainer {
   /* layout */

@@ -215,7 +215,7 @@ function getShoppingListFrag() {
     let fragment = `
             <div class="toolBar">
                 <div class="header">
-                <span class="material-symbols-outlined icon">list_alt</span>
+                <span class="material-symbols-outlined listIcon">receipt_long</span>
                     <h1>View Shopping List</h1>
                     <span id="listCounter" class="button">0</span>
                 </div>

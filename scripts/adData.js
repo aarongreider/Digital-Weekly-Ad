@@ -1,7 +1,7 @@
 function loadWeeklyAd() {
     return new Promise((resolve, reject) => {
-        fetch('https://script.google.com/macros/s/AKfycbwo8bAdEp9koFVzqfPeh4Y7C4x4p-c-zHydPTxmtOuMhZCpRPQQ4kQQ2WtkQRAnaisa6w/exec')
-        /* fetch('https://aaron.greider.org/Digital-Weekly-Ad/json/231002-2_adData.json') */
+        //fetch('https://script.google.com/macros/s/AKfycbwo8bAdEp9koFVzqfPeh4Y7C4x4p-c-zHydPTxmtOuMhZCpRPQQ4kQQ2WtkQRAnaisa6w/exec')
+        fetch('https://aaron.greider.org/Digital-Weekly-Ad/json/231002-3_ad.json')
         
             .then(response => {
                 if (!response.ok) {
@@ -34,10 +34,7 @@ function loadWeeklyAd() {
             });
     });
 }
-function checkIfAdded(item) {
 
-
-}
 function jsonToCards(groups /* , parent */) {
 
     let weeklyAdContainer = document.getElementById('weeklyadContainer')
@@ -59,11 +56,30 @@ function jsonToCards(groups /* , parent */) {
         div.id = group;
         parent.appendChild(div);
 
+        const sectionHead = document.createElement('template');
+        let sectionFrag = `
+                <div class="sectionHeadContainer">
+                    <h1 class="sectionHeader" style="text-transform: capitalize;">${group.toLowerCase()}</h1>
+                    <div class="bannerContainer">
+                        <h2 class="tagline" style="text-transform: capitalize;">${groups[group][0][lsProps.tagline]}</h2>
+                        <div class="bannerBack left"></div>
+                        <div class="bannerBack right"></div>
+                    </div>
+                </div>`
+        sectionHead.innerHTML = sectionFrag;
+        div.prepend(sectionHead.content)
+
+        /* let h2 = document.createElement('h2');
+        h2.className = 'tagline';
+        h2.textContent = groups[group][0][lsProps.tagline];
+        h2.style.textTransform = 'capitalize';
+        div.prepend(h2);
+
         let h1 = document.createElement('h1');
         h1.className = 'sectionHeader';
         h1.textContent = group.toLowerCase();
         h1.style.textTransform = 'capitalize';
-        div.prepend(h1);
+        div.prepend(h1); */
 
         groups[group].forEach(item => {
             let card = getCardFrag(item[lsProps.brand], item[lsProps.description], item[lsProps.price], item[lsProps.priceDisplay], item[lsProps.save], item[lsProps.image], item[lsProps.menu], item[lsProps.id], item[lsProps.size], item[lsProps.unit], item[lsProps.badges], item[lsProps.additional])
@@ -172,10 +188,10 @@ function checkViewportPercent(element, threshold) {
 
     // Check if the element's bottom edge is within the bottom 20% of the viewport
     if (elementBottom >= thresholdVP) {
-        console.log('The element is in the bottom 20% of the viewport.');
+        //console.log('The element is in the bottom 20% of the viewport.');
         return true;
     } else {
-        console.log('The element is not in the bottom 20% of the viewport.');
+        //console.log('The element is not in the bottom 20% of the viewport.');
         return false;
     }
 }
