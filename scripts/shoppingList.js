@@ -106,7 +106,7 @@ function alterLocalStorage(action, target, data = undefined, isAdding = false) {
 
 function getLocalStorageItemMatch(value, prop, key = listKey) {
     let list = JSON.parse(localStorage.getItem(key));
-    
+
 
     for (let i = 0; i < list.length; i++) {
         if (value.localeCompare(list[i][prop]) === 0) {
@@ -135,20 +135,37 @@ function updateTotal(list) {
 
 function setShoppingListListener() {
     /* LIST VIEW TOGGLE */
-    let items = [`.listDropdown > .toolBar`, `.scrollContainer`]
+    let items = [`#toolbar`, `.scrollContainer`]
     items.forEach(item => {
         document.querySelector(item).addEventListener('click', (event) => {
 
             if (event.target.classList.contains('scrollContainer') ||
                 event.target === document.querySelector(".header") ||
                 event.target === document.querySelector(".header > h1") ||
-                event.target === document.querySelector(".header > img")) {
+                event.target === document.querySelector(".header > img") ||
+                event.target === document.querySelector(".header > h1") ||
+                event.target === document.querySelector(".header > .listIcon")) {
                 //console.log('toggle shopping list')
                 document.querySelector(`.scrollContainer`).classList.toggle('showCards')
                 document.body.classList.toggle("noScroll");
             }
         })
     });
+
+    document.querySelector('.header').addEventListener('keydown', (e) => {
+        if (e.key == "Enter") {
+            document.querySelector(`.scrollContainer`).classList.toggle('showCards')
+            document.body.classList.toggle("noScroll");
+        }
+    })
+    document.addEventListener('keydown', (e) => {
+        if (e.key === "Escape" || e.key === "Esc") {
+            if (document.querySelector(`.scrollContainer`).classList.contains('showCards')) {
+                document.querySelector(`.scrollContainer`).classList.toggle('showCards')
+                document.body.classList.toggle("noScroll");
+            }
+        }
+    })
 }
 
 function setPrintListener() {
@@ -156,6 +173,14 @@ function setPrintListener() {
         button.addEventListener('click', () => {
             console.log("printing... or attempting to")
             window.print();
+        })
+        button.addEventListener('keypress', (e) => {
+            let char = e.which || e.keyCode || e.charCode;
+
+            if (char == 13) {
+                console.log("printing... or attempting to")
+                window.print();
+            }
         })
     })
 }
@@ -183,13 +208,13 @@ function setListCardListeners() {
 /* FRAGMENTS & SETUP */
 
 function appendShoppingList() {
-    let parent = document.getElementById('weeklyadContainer')
-    let div = document.createElement('div');
-    div.className = 'listDropdown';
-    document.getElementById('ad').append(div)
+    let parent = document.getElementById('toolbar')
+    /*     let div = document.createElement('div');
+        div.className = 'listDropdown';
+        document.getElementById('ad').append(div) */
 
-    let shoppingList = getShoppingListFrag();
-    div.append(shoppingList.content);
+    let toolbar = getToolbarFrag();
+    parent.prepend(toolbar.content);
 }
 
 function setUpCardContainer() {
@@ -209,18 +234,16 @@ function setUpCardContainer() {
     document.getElementById('ad').prepend(container.content)
 }
 
-function getShoppingListFrag() {
+function getToolbarFrag() {
     const card = document.createElement('template');
 
     let fragment = `
-            <div class="toolBar">
-                <div class="header">
-                <span class="material-symbols-outlined listIcon">receipt_long</span>
-                    <h1>View Shopping List</h1>
+                <div tabindex=0 class="header">
+                    <span class="material-symbols-outlined listIcon">receipt_long</span>
+                        <h1>View Shopping List</h1>
                     <span id="listCounter" class="button">0</span>
                 </div>
-                <span class="material-symbols-outlined print">print</span>
-            </div>`;
+                <span tabindex=0 class="material-symbols-outlined print">print</span>`;
 
     card.innerHTML = fragment;
     return card;

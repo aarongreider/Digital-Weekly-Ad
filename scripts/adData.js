@@ -2,7 +2,7 @@ function loadWeeklyAd() {
     return new Promise((resolve, reject) => {
         //fetch('https://script.google.com/macros/s/AKfycbwo8bAdEp9koFVzqfPeh4Y7C4x4p-c-zHydPTxmtOuMhZCpRPQQ4kQQ2WtkQRAnaisa6w/exec')
         fetch('https://aaron.greider.org/Digital-Weekly-Ad/json/231002-3_ad.json')
-        
+
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`Network response was not ok: ${response.status}`);
@@ -214,27 +214,29 @@ function initializeFilters(sections, categories) {
     let categoryDropdown = document.getElementById('categoryDropdown')
 
     sectionDropdown.addEventListener('change', () => {
-        console.log("section change " + sectionDropdown.value)
-        if (sectionDropdown.value == 'All') {
-            jsonToCards(sections)
-            setAddButtonListeners(sections)
-        } else {
-            jsonToCards({ [`${sectionDropdown.value}`]: sections[`${sectionDropdown.value}`] })
-            setAddButtonListeners({ [`${sectionDropdown.value}`]: sections[`${sectionDropdown.value}`] })
-        }
+        shuffleCards("Section", sectionDropdown, sections, categoryDropdown, "Category");
     })
+
     categoryDropdown.addEventListener('change', () => {
-        console.log("category change " + categoryDropdown.value)
-        if (categoryDropdown.value == 'All') {
-            jsonToCards(categories)
-            setAddButtonListeners(categories)
-        } else {
-            jsonToCards({ [`${categoryDropdown.value}`]: categories[`${categoryDropdown.value}`] })
-            setAddButtonListeners({ [`${categoryDropdown.value}`]: categories[`${categoryDropdown.value}`] })
-        }
+        shuffleCards("Category", categoryDropdown, categories, sectionDropdown, "Section")
     })
 
     populateFilters(sections, categories)
+}
+
+function shuffleCards(label, dropdown, groups, otherDropdown, otherLabel) {
+    console.log(`${label} change ` + dropdown.value)
+    if (dropdown.value.includes('All')) {
+        jsonToCards(groups)
+        setAddButtonListeners(groups)
+    } else {
+        jsonToCards({ [`${dropdown.value}`]: groups[`${dropdown.value}`] })
+        setAddButtonListeners({ [`${dropdown.value}`]: groups[`${dropdown.value}`] })
+    }
+    // reset category dropdown back to default
+    otherDropdown.selectedIndex = 0;
+    resizeSelect(otherDropdown, document.getElementById(`copycat${label}`))
+    resizeSelect(dropdown, document.getElementById(`copycat${otherLabel}`))
 }
 
 function populateFilters(sections, categories) {
@@ -242,8 +244,8 @@ function populateFilters(sections, categories) {
         //console.log(section)
 
         const option = document.createElement('option');
-        option.value = section;
-        option.text = section;
+        option.value =  section;
+        option.text =  section;
         sectionDropdown.appendChild(option);
     }
 
@@ -259,24 +261,31 @@ function populateFilters(sections, categories) {
 
 function appendFilters() {
     let div = document.createElement('div');
-    div.id = 'filterControls';
+    div.id = 'toolbar';
     document.getElementById('ad').append(div);
 
     const card = document.createElement('template');
 
     let fragment = `
-        <div id="filterControls">
             <label for="sectionDropdown">Filter Section</label>
+            <div class="copycat"><p id="copycatSection">I'm a copycat</p></div>
             <select id="sectionDropdown" class="filterButton">
-                <option value="All" selected="selected">All Sections</option>
+                <option value="All Sections" selected="selected">All Sections</option>
             </select>
 
             <label for="categoryDropdown">Filter Category</label>
+            <div class="copycat"><p id="copycatCategory">I'm a copycat</p></div>
             <select id="categoryDropdown" class="filterButton">
-                <option value="All" selected="selected">All Categories</option>
-            </select>
-        </div>`
+                <option value="All Categories" selected="selected">All Categories</option>
+            </select>`
     card.innerHTML = fragment;
     div.append(card.content);
 }
 
+
+function resizeSelect(target, copycat) {
+    console.log(target, copycat)
+    copycat.textContent = target.value;
+    console.log(copycat.offsetWidth)
+    target.style.width = `${copycat.parentNode.offsetWidth + 20}px`
+}
