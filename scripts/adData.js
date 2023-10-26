@@ -21,6 +21,11 @@ function loadWeeklyAd() {
                 document.body.appendChild(container);
 
                 appendFilters();
+                
+                
+                resizeSelect(document.getElementById('sectionDropdown'), document.getElementById(`copycatSection`))
+                resizeSelect(document.getElementById('categoryDropdown'), document.getElementById(`copycatCategory`))
+
                 jsonToCards(sections);
                 initializeFilters(sections, categories);
                 initializeLocalStorage();
@@ -61,7 +66,9 @@ function jsonToCards(groups /* , parent */) {
                 <div class="sectionHeadContainer">
                     <h1 class="sectionHeader" style="text-transform: capitalize;">${group.toLowerCase()}</h1>
                     <div class="bannerContainer">
-                        <h2 class="tagline" style="text-transform: capitalize;">${groups[group][0][lsProps.tagline]}</h2>
+                        <div class="taglineContainer">
+                            <h2 class="tagline" style="text-transform: capitalize;">${groups[group][0][lsProps.tagline]}</h2>
+                        </div>
                         <div class="bannerBack left"></div>
                         <div class="bannerBack right"></div>
                     </div>
@@ -244,8 +251,8 @@ function populateFilters(sections, categories) {
         //console.log(section)
 
         const option = document.createElement('option');
-        option.value =  section;
-        option.text =  section;
+        option.value = section;
+        option.text = section;
         sectionDropdown.appendChild(option);
     }
 

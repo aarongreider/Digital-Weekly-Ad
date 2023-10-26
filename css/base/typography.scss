@@ -36,7 +36,7 @@
         $height: 50px;
         position: relative;
         //box-shadow: $soft-drop;
-        filter: $soft-drop-filter;
+        //filter: $soft-drop-filter;
 
         .tagline {
             display: flex;
@@ -48,8 +48,13 @@
             background: $dark-green;
             color: white;
             padding: 0 80px;
-            
-            
+
+            font-family: $font-family-script;
+
+            filter: $soft-drop-filter;
+            //border-radius: 10px;
+
+
         }
 
         .bannerBack {
@@ -57,6 +62,8 @@
             height: $height;
             position: absolute;
             background: $dark-green;
+            z-index: -1;
+            filter: $soft-drop-filter;
         }
 
         .left {
@@ -78,7 +85,6 @@ h1,
 h2,
 h3,
 h4,
-/* p, */
 a {
     font-family: $font-family;
 }

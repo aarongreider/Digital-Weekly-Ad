@@ -1,7 +1,3 @@
-#ad {
-	padding: 16px;
-}
-
 id-element {
 	display: none;
 }
@@ -9,9 +5,9 @@ id-element {
 #weeklyadContainer {
 	width: 95vw;
 	display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .cardContainer {
@@ -19,7 +15,13 @@ id-element {
 	flex-direction: row;
 	flex-wrap: wrap;
 	//gap: 16px;
-	gap: calc(16px + 5 /* base offset at specified viewport width */ * (100vw - 320px /* vp width */) / 400 /* scale of max value */);
+	gap: calc(16px + 5
+			/* base offset at specified viewport width */
+			* (100vw - 320px
+				/* vp width */
+			) / 400
+			/* scale of max value */
+		);
 	//padding: 16px;
 }
 

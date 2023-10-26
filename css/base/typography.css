@@ -18,7 +18,6 @@
 }
 .sectionHeadContainer .bannerContainer {
   position: relative;
-  filter: drop-shadow(2px 2px 2px rgba(50, 50, 0, 0.35));
 }
 .sectionHeadContainer .bannerContainer .tagline {
   display: flex;
@@ -28,12 +27,16 @@
   background: #0C5900;
   color: white;
   padding: 0 80px;
+  font-family: "Lobster", sans-serif;
+  filter: drop-shadow(2px 2px 2px rgba(50, 50, 0, 0.35));
 }
 .sectionHeadContainer .bannerContainer .bannerBack {
   width: 90px;
   height: 50px;
   position: absolute;
   background: #0C5900;
+  z-index: -1;
+  filter: drop-shadow(2px 2px 2px rgba(50, 50, 0, 0.35));
 }
 .sectionHeadContainer .bannerContainer .left {
   left: 0;
