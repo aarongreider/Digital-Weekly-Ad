@@ -63,15 +63,13 @@ function jsonToCards(groups /* , parent */) {
 
         const sectionHead = document.createElement('template');
         let sectionFrag = `
-                <div class="sectionHeadContainer">
-                    <h1 class="sectionHeader" style="text-transform: capitalize;">${group.toLowerCase()}</h1>
-                    <div class="bannerContainer">
-                        <div class="taglineContainer">
-                            <h2 class="tagline" style="text-transform: capitalize;">${groups[group][0][lsProps.tagline]}</h2>
-                        </div>
+                <div class="bannerContainer">
+                        <h2 class="tagline" style="text-transform: capitalize;">${groups[group][0][lsProps.tagline]}</h2>
                         <div class="bannerBack left"></div>
                         <div class="bannerBack right"></div>
                     </div>
+                <div class="sectionHeadContainer">
+                    <h1 class="sectionHeader" style="text-transform: capitalize;">${group.toLowerCase()}</h1>
                 </div>`
         sectionHead.innerHTML = sectionFrag;
         div.prepend(sectionHead.content)

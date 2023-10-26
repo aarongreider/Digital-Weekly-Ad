@@ -8,9 +8,12 @@ id-element {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	gap: 60px;
+	margin-top: 60px;
 }
 
 .cardContainer {
+	position: relative;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -22,7 +25,18 @@ id-element {
 			) / 400
 			/* scale of max value */
 		);
-	//padding: 16px;
+	padding: calc(16px + 5
+	/* base offset at specified viewport width */
+	* (100vw - 320px
+		/* vp width */
+	) / 400
+	/* scale of max value */
+);
+
+	/* styling */
+	border-radius: 16px;
+	background: #E3E1DE;
+	box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.30) inset;
 }
 
 .menuContainer {

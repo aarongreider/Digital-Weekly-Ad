@@ -8,13 +8,21 @@ id-element {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 60px;
+  margin-top: 60px;
 }
 
 .cardContainer {
+  position: relative;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: calc(16px + 5 * (100vw - 320px) / 400);
+  padding: calc(16px + 5 * (100vw - 320px) / 400);
+  /* styling */
+  border-radius: 16px;
+  background: #E3E1DE;
+  box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.3) inset;
 }
 
 .menuContainer {

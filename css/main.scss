@@ -9,6 +9,10 @@
     @import './layout/general';
 }
 
+body {
+    background: #EDEAE7;
+}
+
 .banner {
     z-index: 99;
 	display: flex;
