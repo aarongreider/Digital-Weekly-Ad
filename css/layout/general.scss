@@ -1,9 +1,13 @@
+@import '../abstract/mixins';
+@import '../abstract/variables';
+
 id-element {
 	display: none;
 }
 
 #weeklyadContainer {
-	width: 95vw;
+	//width: 95vw;
+	width: auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -18,20 +22,8 @@ id-element {
 	flex-direction: row;
 	flex-wrap: wrap;
 	//gap: 16px;
-	gap: calc(16px + 5
-			/* base offset at specified viewport width */
-			* (100vw - 320px
-				/* vp width */
-			) / 400
-			/* scale of max value */
-		);
-	padding: calc(16px + 5
-	/* base offset at specified viewport width */
-	* (100vw - 320px
-		/* vp width */
-	) / 400
-	/* scale of max value */
-);
+	gap: $scaling-padding;
+	padding: $scaling-padding;
 
 	/* styling */
 	border-radius: 16px;
@@ -76,6 +68,19 @@ id-element {
 	}
 }
 
+.headerImg {
+	width: 320px;
+	top: 0;
+	right: 0;
+	position: absolute;
+	overflow: hidden;
+	border-radius: 0 16px;
+}
+
 .flex {
 	display: flex !important;
+}
+
+.inline {
+    position: relative !important;
 }

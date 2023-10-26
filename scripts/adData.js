@@ -21,8 +21,8 @@ function loadWeeklyAd() {
                 document.body.appendChild(container);
 
                 appendFilters();
-                
-                
+
+
                 resizeSelect(document.getElementById('sectionDropdown'), document.getElementById(`copycatSection`))
                 resizeSelect(document.getElementById('categoryDropdown'), document.getElementById(`copycatCategory`))
 
@@ -63,14 +63,14 @@ function jsonToCards(groups /* , parent */) {
 
         const sectionHead = document.createElement('template');
         let sectionFrag = `
-                <div class="bannerContainer">
+                <div class="sectionHeadContainer">
+                    <div class="bannerContainer">
                         <h2 class="tagline" style="text-transform: capitalize;">${groups[group][0][lsProps.tagline]}</h2>
                         <div class="bannerBack right"></div>
                     </div>
-                    
-                <div class="sectionHeadContainer">
                     <h1 class="sectionHeader" style="text-transform: capitalize;">${group.toLowerCase()}</h1>
-                </div>`
+                </div>
+                <img class="headerImg" src="../images/leaves.png">`
         sectionHead.innerHTML = sectionFrag;
         div.prepend(sectionHead.content)
 
@@ -294,3 +294,21 @@ function resizeSelect(target, copycat) {
     console.log(copycat.offsetWidth)
     target.style.width = `${copycat.parentNode.offsetWidth + 20}px`
 }
+
+/* window.addEventListener("resize", () => {
+    console.log(window.innerWidth)
+    let containers = document.getElementsByClassName('cardContainer');
+    Array.from(containers).forEach(container => {
+        let banner = container.getElementsByClassName('bannerContainer')[0];
+        let bannerRect = banner.getBoundingClientRect();
+        let headerRect = container.getElementsByClassName('sectionHeader')[0].getBoundingClientRect();
+        let difference = bannerRect.left - headerRect.right;
+        console.log("difference:" + difference)
+
+        if (bannerRect.left - headerRect.right < 0) {
+            if (!banner.classList.contains('inline')) {
+                banner.classList.add('inline');
+            }
+        }
+    });
+}); */

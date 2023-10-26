@@ -1,14 +1,15 @@
 #ad {
-  padding: 16px;
   /* * {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   } */
   /* css selectors for printing */
+  /*  padding: 16px; */
+  margin: 0 calc((100vw - 10px) / 50);
 }
 #ad .sectionHeadContainer {
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: flex-start;
   z-index: 2;
 }
@@ -24,9 +25,8 @@
   color: white;
 }
 #ad .bannerContainer {
-  position: absolute;
-  right: -20px;
-  top: 12px;
+  position: relative;
+  left: calc((16px + 5 * (100vw - 320px) / 400) * -1 - 24px);
   z-index: 1;
 }
 #ad .bannerContainer .tagline {
@@ -34,6 +34,7 @@
   justify-content: center;
   align-items: center;
   font-family: "Lobster", sans-serif;
+  font-size: calc(16px + 6 * (100vw - 320px) / 680);
   text-align: center;
   background: #0C5900;
   color: white;
@@ -43,18 +44,15 @@
   border-radius: 4px;
 }
 #ad .bannerContainer .bannerBack {
-  width: 20px;
-  height: 50px;
   position: absolute;
-  background: #0C5900;
-  z-index: -1;
-  filter: drop-shadow(2px 2px 2px rgba(50, 50, 0, 0.35));
-  margin: 0;
-}
-#ad .bannerContainer .right {
-  right: 0;
   top: 12px;
-  border-radius: 0 0 10px 0;
+  width: 24px;
+  height: 100%;
+  margin: 0;
+  z-index: -1;
+  background: #0C5900;
+  border-radius: 0 0 0 10px;
+  filter: drop-shadow(2px 2px 2px rgba(50, 50, 0, 0.35));
 }
 #ad h1,
 #ad h2,
@@ -340,6 +338,8 @@
   bottom: 36px;
   left: 36px;
   z-index: 10;
+  max-width: 100%;
+  flex-wrap: wrap;
   display: flex;
   flex-direction: row;
   gap: 14px;
@@ -623,7 +623,7 @@
   display: none;
 }
 #ad #weeklyadContainer {
-  width: 95vw;
+  width: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -673,8 +673,19 @@
   order: 2;
   flex-grow: 9999999;
 }
+#ad .headerImg {
+  width: 320px;
+  top: 0;
+  right: 0;
+  position: absolute;
+  overflow: hidden;
+  border-radius: 0 16px;
+}
 #ad .flex {
   display: flex !important;
+}
+#ad .inline {
+  position: relative !important;
 }
 
 body {

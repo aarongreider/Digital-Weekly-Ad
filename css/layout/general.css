@@ -3,7 +3,7 @@ id-element {
 }
 
 #weeklyadContainer {
-  width: 95vw;
+  width: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -56,6 +56,19 @@ id-element {
   flex-grow: 9999999;
 }
 
+.headerImg {
+  width: 320px;
+  top: 0;
+  right: 0;
+  position: absolute;
+  overflow: hidden;
+  border-radius: 0 16px;
+}
+
 .flex {
   display: flex !important;
+}
+
+.inline {
+  position: relative !important;
 }/*# sourceMappingURL=general.css.map */

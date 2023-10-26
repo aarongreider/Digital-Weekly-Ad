@@ -4,7 +4,7 @@
 .sectionHeadContainer {
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: flex-start;
   z-index: 2;
 }
@@ -21,9 +21,8 @@
 }
 
 .bannerContainer {
-  position: absolute;
-  right: -20px;
-  top: 12px;
+  position: relative;
+  left: calc((16px + 5 * (100vw - 320px) / 400) * -1 - 24px);
   z-index: 1;
 }
 .bannerContainer .tagline {
@@ -31,6 +30,7 @@
   justify-content: center;
   align-items: center;
   font-family: "Lobster", sans-serif;
+  font-size: calc(16px + 6 * (100vw - 320px) / 680);
   text-align: center;
   background: #0C5900;
   color: white;
@@ -40,18 +40,15 @@
   border-radius: 4px;
 }
 .bannerContainer .bannerBack {
-  width: 20px;
-  height: 50px;
   position: absolute;
-  background: #0C5900;
-  z-index: -1;
-  filter: drop-shadow(2px 2px 2px rgba(50, 50, 0, 0.35));
-  margin: 0;
-}
-.bannerContainer .right {
-  right: 0;
   top: 12px;
-  border-radius: 0 0 10px 0;
+  width: 24px;
+  height: 100%;
+  margin: 0;
+  z-index: -1;
+  background: #0C5900;
+  border-radius: 0 0 0 10px;
+  filter: drop-shadow(2px 2px 2px rgba(50, 50, 0, 0.35));
 }
 
 h1,
